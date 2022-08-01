@@ -1,0 +1,13 @@
+name: Iman
+main: space.moontalk.mc.iman.Iman
+version: '${project.version}'
+api-version: 1.19
+description: '${project.description}'
+commands:
+  inventory:
+    aliases: [inv]
+    description: Manages inventories
+    usage: |
+      /<command> list [player name]
+      /<command> set <inventory name> [player name]
+      /<command> save <inventory name> [player name]

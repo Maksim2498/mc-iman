@@ -1,0 +1,3 @@
+# Minecraft Inventory Manager Plugin
+
+Something will be written here soon...
