@@ -1,3 +1,9 @@
 # Minecraft Inventory Manager Plugin
 
-Something will be written here soon...
+This plugin provides inventory managment API for
+another plugins and respective commands for server operators.
+
+## Commands:
+- `/inventory list [player name]`;
+- `/inventory save <inventory name> [player name]`;
+- `/inventory set <inventory name> [player name]`;
