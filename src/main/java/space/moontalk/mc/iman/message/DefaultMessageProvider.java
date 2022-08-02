@@ -4,7 +4,6 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.val;
 
 import space.moontalk.mc.iman.*;
 import space.moontalk.mc.iman.command.sub.ArgsRange;
