@@ -16,3 +16,32 @@ another plugins and respective commands for server operators.
 - `@NonNull List<@NonNull String> getInvenotriesNames(@NonNull Player player) throws Exception` – list player's inventories;
 - `void saveInventory(@NonNull Player player, @NonNull String name) throws Exception` – save players's inventory;
 - `void setInventory(@NonNull Player player, @NonNull String name) throws Exception` – set player's inventory.
+
+## Configuration:
+
+You can configure plugin's messages.
+The following is it's messages names.
+Messages can contain placeholders like <player>.
+For example of using placeholders see [default config](src/main/resources/config.yml).
+
+### Error:
+- `missing-subcommand`
+- `invalid-subcommand`
+- `invalid-args-num`
+- `not-a-player`
+- `player-not-found`
+
+### List:
+- `missing-your-inventories`
+- `missing-inventories`
+- `your-inventories`
+- `inventories`
+- `inventory`
+
+### Save:
+- `save-your-inventory`
+- `save-inventory`
+
+### Set:
+- `set-your-inventory`
+- `set-inventory`
