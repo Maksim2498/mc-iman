@@ -4,7 +4,7 @@
 
     <groupId>space.moontalk.mc</groupId>
     <artifactId>iman</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
 
     <name>Inventory Manager</name>
     <description>Provides means for creating and switching inventories</description>
