@@ -8,11 +8,27 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import lombok.Getter;
 import lombok.val;
 
+import space.moontalk.mc.iman.command.*;
+import space.moontalk.mc.iman.message.*;
+
 public final class Iman extends JavaPlugin {
+    @Getter
+    private final MessageProvider messageProvider = new DefaultMessageProvider(this);
+
     @Override
     public void onEnable() {
+        setupConfig();
+        setupCommand();
+    }
+
+    private void setupConfig() {
+        saveDefaultConfig();
+    }
+
+    private void setupCommand() {
         val command   = Objects.requireNonNull(getCommand("inventory"));
         val executor  = new InventoryExecutor(this);
         val completer = new InventoryTabCompleter();

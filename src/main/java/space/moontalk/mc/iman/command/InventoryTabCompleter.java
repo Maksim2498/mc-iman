@@ -1,4 +1,4 @@
-package space.moontalk.mc.iman;
+package space.moontalk.mc.iman.command;
 
 import java.util.Collections;
 import java.util.LinkedList;

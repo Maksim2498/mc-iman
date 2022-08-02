@@ -1,4 +1,4 @@
-package space.moontalk.mc.iman.subcommand;
+package space.moontalk.mc.iman.command.sub;
 
 import org.bukkit.command.CommandSender;
 
@@ -8,14 +8,14 @@ import lombok.val;
 
 import space.moontalk.mc.iman.*;
 
-public class SaveInventoryExecutor extends PluginHolder implements SubcommandExecutor {
+public class SaveInventoryExecutor extends BaseSubcommandExecutor {
     public SaveInventoryExecutor(@NonNull Iman plugin) {
         super(plugin);
     }
 
     @Override
-    public @NonNull ArgumentsRange getArgsRange() {
-        return new ArgumentsRange(1, 2);
+    public @NonNull ArgsRange getArgsRange() {
+        return new ArgsRange(1, 2);
     }
 
     @Override
@@ -25,15 +25,16 @@ public class SaveInventoryExecutor extends PluginHolder implements SubcommandExe
         @NonNull String        label, 
         @NonNull String[]      args
     ) throws Exception {
-        val player        = SubcommandExecutor.getPlayerTarget(sender, args, 1);
-        val inventoryName = args[0];
         val plugin        = getPlugin();
+        val player        = getPlayerTarget(sender, args, 1);
+        val inventoryName = args[0];
 
         plugin.saveInventoryUnsafe(player, inventoryName);
 
-        val message = sender == player 
-                    ? String.format("Your current inventory has been saved as %s.", inventoryName)
-                    : String.format("%s's current inventory has been saved as %s.", player.getName(), inventoryName);        
+        val messageProvider = plugin.getMessageProvider();
+        val message         = sender == player 
+                            ? messageProvider.makeSaveYourInventory(inventoryName)
+                            : messageProvider.makeSaveInventory(player.getName(), inventoryName);
         
         sender.sendMessage(message);
     }

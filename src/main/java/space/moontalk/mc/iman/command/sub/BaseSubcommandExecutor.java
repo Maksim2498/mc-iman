@@ -1,24 +1,23 @@
-package space.moontalk.mc.iman.subcommand;
+package space.moontalk.mc.iman.command.sub;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.val;
 
-public interface SubcommandExecutor {
-    @NonNull ArgumentsRange getArgsRange();
+import space.moontalk.mc.iman.*;
 
-    void onSubcommand(
-        @NonNull CommandSender sender, 
-        @NonNull Subcommand    subcommand, 
-        @NonNull String        label, 
-        @NonNull String[]      args
-    ) throws Exception;
+@AllArgsConstructor
+public abstract class BaseSubcommandExecutor implements SubcommandExecutor, PluginHolder {
+    @Getter
+    @NonNull
+    private final Iman plugin;
 
-    static @NonNull Player getPlayerTarget(
+    protected @NonNull Player getPlayerTarget(
         @NonNull CommandSender sender,
         @NonNull String[]      args,
         int                    argNum
@@ -28,10 +27,12 @@ public interface SubcommandExecutor {
         if (target instanceof Player player)
             return player;
 
-        throw new Exception("§cThis command can only be run by player.");
+        val message = getPlugin().getMessageProvider().makeNotAPlayer();
+
+        throw new Exception(message);
     }
 
-    static @NonNull CommandSender getTarget(
+    protected @NonNull CommandSender getTarget(
         @NonNull CommandSender sender,
         @NonNull String[]      args, 
         int                    argNum
@@ -44,7 +45,7 @@ public interface SubcommandExecutor {
         val player     = server.getPlayer(playerName);
 
         if (player == null) {
-            val message = String.format("§cPlayer %s not found.", playerName);
+            val message = getPlugin().getMessageProvider().makePlayerNotFound(playerName);
             throw new Exception(message);
         }
 

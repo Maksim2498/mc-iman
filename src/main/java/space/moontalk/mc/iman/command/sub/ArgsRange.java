@@ -1,11 +1,11 @@
-package space.moontalk.mc.iman.subcommand;
+package space.moontalk.mc.iman.command.sub;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
 
 @Value
 @AllArgsConstructor
-public class ArgumentsRange {
+public class ArgsRange {
     int low;
     int high;
 

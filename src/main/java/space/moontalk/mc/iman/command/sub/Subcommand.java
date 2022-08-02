@@ -1,4 +1,4 @@
-package space.moontalk.mc.iman.subcommand;
+package space.moontalk.mc.iman.command.sub;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 

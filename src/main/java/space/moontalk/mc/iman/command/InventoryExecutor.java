@@ -1,4 +1,4 @@
-package space.moontalk.mc.iman;
+package space.moontalk.mc.iman.command;
 
 import java.util.Arrays;
 
@@ -11,21 +11,28 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import lombok.Getter;
 import lombok.val;
 
-import space.moontalk.mc.iman.subcommand.*;
+import space.moontalk.mc.iman.*;
+import space.moontalk.mc.iman.command.sub.*;
 
 @Getter
-public class InventoryExecutor extends PluginHolder implements CommandExecutor {
-    @NonNull
-    private final ListInventoriesExecutor listExecutor = new ListInventoriesExecutor(getPlugin());
+public class InventoryExecutor implements CommandExecutor, PluginHolder {
+    @NonNull 
+    private final Iman plugin;
 
     @NonNull
-    private final SaveInventoryExecutor saveExecutor = new SaveInventoryExecutor(getPlugin());
+    private final ListInventoriesExecutor listExecutor;
 
     @NonNull
-    private final SetInventoryExecutor setExecutor = new SetInventoryExecutor(getPlugin());
+    private final SaveInventoryExecutor saveExecutor;
+
+    @NonNull
+    private final SetInventoryExecutor setExecutor;
 
     public InventoryExecutor(@NonNull Iman plugin) {
-        super(plugin);
+        this.plugin  = plugin;
+        listExecutor = new ListInventoriesExecutor(plugin);
+        saveExecutor = new SaveInventoryExecutor(plugin);
+        setExecutor  = new SetInventoryExecutor(plugin);
     }
 
     @Override
@@ -36,11 +43,10 @@ public class InventoryExecutor extends PluginHolder implements CommandExecutor {
         @NonNull String[]      args
     ) {
         try {
-            if (!sender.isOp())
-                throw new Exception("§cYou have no permission to run this command.");
-
-            if (args.length == 0)
-                throw new Exception("§cMissing subcommand.");
+            if (args.length == 0) {
+                val message = getPlugin().getMessageProvider().makeMissingSubcommand();
+                throw new Exception(message);
+            }
 
             val subLabel       = args[0];
             val subcommandName = subLabel.toLowerCase();
@@ -51,7 +57,7 @@ public class InventoryExecutor extends PluginHolder implements CommandExecutor {
                 case "save" -> saveExecutor ;
                 case "set"  -> setExecutor;
                 default     -> {
-                    val message = String.format("§cInvalid subcommand (%s).", subcommandName);
+                    val message = getPlugin().getMessageProvider().makeInvalidSubcommand(subcommandName);
                     throw new Exception(message);
                 }
             };
@@ -59,13 +65,7 @@ public class InventoryExecutor extends PluginHolder implements CommandExecutor {
             val argsRange = executor.getArgsRange();
              
             if (!argsRange.contains(subArgs.length)) {
-                val message = String.format(
-                    "§cFrom %d to %d subcommand arguments were expected but %d were passed",
-                    argsRange.getLow(),
-                    argsRange.getHigh(),
-                    subArgs.length
-                );
-
+                val message = getPlugin().getMessageProvider().makeInvalidArgsNum(argsRange, subArgs.length);
                 throw new Exception(message);
             }
 
