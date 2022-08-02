@@ -10,7 +10,7 @@ another plugins and respective commands for server operators.
 - `/inventory save <inventory name> [player name]` – save player's inventory;
 - `/inventory set <inventory name> [player name]` – set player's inventory.
 
-`/inv` alias is also available.
+*`/inv` alias is also available.*
 
 ## API:
 - `@NonNull List<@NonNull String> getInvenotriesNames(@NonNull Player player) throws Exception` – list player's inventories;
