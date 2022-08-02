@@ -3,6 +3,8 @@
 This plugin provides inventory managment API for
 another plugins and respective commands for server operators.
 
+**Warning: plugin isn't finished yet, it's just a preview.**
+
 ## Commands:
 - `/inventory list [player name]` – list player's inventories;
 - `/inventory save <inventory name> [player name]` – save player's inventory;
