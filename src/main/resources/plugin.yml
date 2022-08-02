@@ -1,7 +1,7 @@
 name: Iman
 main: space.moontalk.mc.iman.Iman
 version: '${project.version}'
-api-version: 1.19
+api-version: 1.13
 description: '${project.description}'
 author: maksim2498
 commands:
