@@ -29,7 +29,7 @@ public class SaveInventoryExecutor extends PluginHolder implements SubcommandExe
         val inventoryName = args[0];
         val plugin        = getPlugin();
 
-        plugin.saveInventory(player, inventoryName);
+        plugin.saveInventoryUnsafe(player, inventoryName);
 
         val message = sender == player 
                     ? String.format("Your current inventory has been saved as %s.", inventoryName)

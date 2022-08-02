@@ -29,7 +29,7 @@ public class SetInventoryExecutor extends PluginHolder implements SubcommandExec
         val inventoryName = args[0]; 
         val plugin        = getPlugin();
 
-        plugin.setInventory(player, inventoryName);
+        plugin.setInventoryUnsafe(player, inventoryName);
 
         val message = sender == player 
                     ? String.format("Your current inventory has been set to %s.", inventoryName)

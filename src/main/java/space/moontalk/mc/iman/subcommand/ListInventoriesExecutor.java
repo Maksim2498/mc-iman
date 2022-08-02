@@ -27,7 +27,7 @@ public class ListInventoriesExecutor extends PluginHolder implements SubcommandE
     ) throws Exception {
         val player = SubcommandExecutor.getPlayerTarget(sender, args, 0);
         val plugin = getPlugin();
-        val list   = plugin.getInvenotriesNames(player);        
+        val list   = plugin.getInvenotriesNamesUnsafe(player);        
 
         if (list.isEmpty()) {
             val message = sender == player 

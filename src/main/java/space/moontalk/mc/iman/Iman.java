@@ -6,7 +6,7 @@ import java.util.Objects;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import lombok.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import lombok.val;
 
@@ -21,15 +21,27 @@ public final class Iman extends JavaPlugin {
         command.setTabCompleter(completer);
     }
 
-    public @NonNull List<@NonNull String> getInvenotriesNames(@NonNull Player player) throws Exception {
+    public @NonNull List<@NonNull String> getInvenotriesNames(@lombok.NonNull Player player) throws Exception {
+        return getInvenotriesNamesUnsafe(player);
+    }
+
+    public @NonNull List<@NonNull String> getInvenotriesNamesUnsafe(@NonNull Player player) throws Exception {
         throw new Exception("§cNot implemented.");
     }
 
-    public void saveInventory(@NonNull Player player, @NonNull String name) throws Exception {
+    public void saveInventory(@lombok.NonNull Player player, @lombok.NonNull String name) throws Exception {
+        saveInventoryUnsafe(player, name);
+    }
+
+    public void saveInventoryUnsafe(@NonNull Player player, @NonNull String name) throws Exception {
         throw new Exception("§cNot implemented.");
     }
 
-    public void setInventory(@NonNull Player player, @NonNull String name) throws Exception {
+    public void setInventory(@lombok.NonNull Player player, @lombok.NonNull String name) throws Exception {
+        setInventoryUnsafe(player, name);
+    }
+
+    public void setInventoryUnsafe(@NonNull Player player, @NonNull String name) throws Exception {
         throw new Exception("§cNot implemented.");
     }
 }
