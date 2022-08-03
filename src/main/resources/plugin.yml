@@ -16,19 +16,19 @@ commands:
       /<command> save <inventory name> [player name]
 permissions:
   iman.inv.list.self:
-    description: Allowes you to list your invenotries.
+    description: Allowes you to list your own invenotries.
     default: true
   iman.inv.list.other:
     description: Allowes you to list other players' invenotries.
     default: op 
   iman.inv.save.self:
-    description: Allowes you to save your inventory.
+    description: Allowes you to save your own inventory.
     default: op
   iman.inv.save.other:
     description: Allowes you to save other players' inventory.
     default: op
   iman.inv.set.self:
-    description: Allowes you to set your inventory.
+    description: Allowes you to set your own inventory.
     default: op
   iman.inv.set.other:
     description: Allowes you to set other players' inventory.
