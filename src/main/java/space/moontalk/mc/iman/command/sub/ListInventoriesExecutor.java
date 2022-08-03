@@ -21,7 +21,6 @@ public class ListInventoriesExecutor extends BaseSubcommandExecutor {
     @Override
     public void onSubcommand(
         @NonNull CommandSender sender, 
-        @NonNull Subcommand    command, 
         @NonNull String        label, 
         @NonNull String[]      args
     ) throws Exception {

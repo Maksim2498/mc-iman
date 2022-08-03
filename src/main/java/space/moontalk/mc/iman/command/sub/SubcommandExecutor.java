@@ -9,7 +9,6 @@ public interface SubcommandExecutor {
 
     void onSubcommand(
         @NonNull CommandSender sender, 
-        @NonNull Subcommand    subcommand, 
         @NonNull String        label, 
         @NonNull String[]      args
     ) throws Exception;

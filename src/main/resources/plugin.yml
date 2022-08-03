@@ -8,6 +8,7 @@ commands:
   inventory:
     aliases: [inv]
     description: Manages inventories
+    permission-message: "§cYou don't have permission to run this command."
     usage: |
       /<command> list [player name]
       /<command> set <inventory name> [player name]

@@ -50,7 +50,6 @@ public class InventoryExecutor implements CommandExecutor, PluginHolder {
 
             val subLabel       = args[0];
             val subcommandName = subLabel.toLowerCase();
-            val subcommand     = new Subcommand(subcommandName);
             val subArgs        = Arrays.copyOfRange(args, 1, args.length);
             val executor       = switch (subcommandName) {
                 case "list" -> listExecutor;
@@ -69,7 +68,7 @@ public class InventoryExecutor implements CommandExecutor, PluginHolder {
                 throw new Exception(message);
             }
 
-            executor.onSubcommand(sender, subcommand, subLabel, subArgs);
+            executor.onSubcommand(sender, subLabel, subArgs);
         } catch (Exception e) {
             sender.sendMessage(e.getMessage()); 
         }
