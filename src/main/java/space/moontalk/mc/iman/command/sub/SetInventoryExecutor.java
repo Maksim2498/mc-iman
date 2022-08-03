@@ -1,5 +1,6 @@
 package space.moontalk.mc.iman.command.sub;
 
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -21,17 +22,22 @@ public class SetInventoryExecutor extends BaseSubcommandExecutor {
     @Override
     public void onSubcommand(
         @NonNull CommandSender sender, 
+        @NonNull Command       command,
         @NonNull String        label, 
         @NonNull String[]      args
     ) throws Exception {
+        val player = getPlayerTarget(sender, args, 1);
+        val isSame = sender == player;
+
+        throwIfMissingPermission(sender, command, isSame ? "iman.inv.set.self" : "iman.inv.set.other");
+
         val plugin        = getPlugin();
-        val player        = getPlayerTarget(sender, args, 1);
         val inventoryName = args[0]; 
 
         plugin.setInventoryUnsafe(player, inventoryName);
 
         val messageProvider = plugin.getMessageProvider();
-        val message         = sender == player
+        val message         = isSame
                             ? messageProvider.makeSetYourInventory(inventoryName)
                             : messageProvider.makeSetInventory(player.getName(), inventoryName);
 

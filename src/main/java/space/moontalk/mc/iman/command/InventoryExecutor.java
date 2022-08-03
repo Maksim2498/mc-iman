@@ -68,11 +68,12 @@ public class InventoryExecutor implements CommandExecutor, PluginHolder {
                 throw new Exception(message);
             }
 
-            executor.onSubcommand(sender, subLabel, subArgs);
+            executor.onSubcommand(sender, command, subLabel, subArgs);
+        } catch (ComponentException e) {
+            sender.sendMessage(e.getComponent());   
         } catch (Exception e) {
             sender.sendMessage(e.getMessage()); 
         }
-
         return true;
     }
 }

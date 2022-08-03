@@ -23,9 +23,6 @@ public class InventoryTabCompleter implements TabCompleter {
         @NonNull String        alias, 
         @NonNull String[]      args
     ) {
-        if (!sender.isOp())
-            return Collections.emptyList();
-          
         return switch (args.length) {
             case 1 -> {
                 val list = new LinkedList<String>();

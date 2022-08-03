@@ -1,9 +1,10 @@
 name: Iman
-main: space.moontalk.mc.iman.Iman
 version: '${project.version}'
-api-version: 1.13
 description: '${project.description}'
 author: maksim2498
+main: space.moontalk.mc.iman.Iman
+database: true
+api-version: 1.13
 commands:
   inventory:
     aliases: [inv]
@@ -13,3 +14,22 @@ commands:
       /<command> list [player name]
       /<command> set <inventory name> [player name]
       /<command> save <inventory name> [player name]
+permissions:
+  iman.inv.list.self:
+    description: Allowes you to list your invenotries.
+    default: true
+  iman.inv.list.other:
+    description: Allowes you to list other players' invenotries.
+    default: op 
+  iman.inv.save.self:
+    description: Allowes you to save your inventory.
+    default: op
+  iman.inv.save.other:
+    description: Allowes you to save other players' inventory.
+    default: op
+  iman.inv.set.self:
+    description: Allowes you to set your inventory.
+    default: op
+  iman.inv.set.other:
+    description: Allowes you to set other players' inventory.
+    default: op

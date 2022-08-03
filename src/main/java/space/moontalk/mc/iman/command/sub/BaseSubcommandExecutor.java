@@ -1,8 +1,10 @@
 package space.moontalk.mc.iman.command.sub;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import lombok.AllArgsConstructor;
@@ -16,6 +18,22 @@ public abstract class BaseSubcommandExecutor implements SubcommandExecutor, Plug
     @Getter
     @NonNull
     private final Iman plugin;
+
+    protected void throwIfMissingPermission(
+        @NonNull CommandSender sender, 
+        @NonNull Command       command,
+        @NonNull String        permission
+    ) throws Exception {
+        if (sender.hasPermission(permission))
+            return;
+
+        val component = command.permissionMessage();
+
+        if (component == null)
+            throw new Exception();
+
+        throw new ComponentException(component);
+    }
 
     protected @NonNull Player getPlayerTarget(
         @NonNull CommandSender sender,
