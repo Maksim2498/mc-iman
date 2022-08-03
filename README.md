@@ -43,7 +43,7 @@ For example of using placeholders see [default config](src/main/resources/config
 - `save-inventory` - show after issuing `/inv save <inventory name> <player name>`.
 
 ### Set:
-- `set-your-inventory` -;shown after issuing `/inv set <inventory name>`;
+- `set-your-inventory` - shown after issuing `/inv set <inventory name>`;
 - `set-inventory` - show after issuing `/inv set <inventory name> <player name>`.
 
 ## Permissions:
