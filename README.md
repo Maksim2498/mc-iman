@@ -45,3 +45,19 @@ For example of using placeholders see [default config](src/main/resources/config
 ### Set:
 - `set-your-inventory` -;shown after issuing `/inv set <inventory name>`;
 - `set-inventory` - show after issuing `/inv set <inventory name> <player name>`.
+
+## Permissions:
+
+Plugin provides you a list of permissions for every subcommand and it's every variation.
+
+### List:
+- `iman.inv.list.self` - list your own inventories;
+- `iman.inv.list.other` - list others' inventories.
+
+### Save:
+- `iman.inv.save.self` - save your own inventory;
+- `iman.inv.save.other` - save others' inventory.
+
+### Set:
+- `iman.inv.set.self` - set your own inventory;
+- `iman.inv.set.other` - set others' inventory.
