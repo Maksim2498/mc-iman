@@ -13,9 +13,12 @@ another plugins and respective commands for server operators.
 *`/inv` alias is also available.*
 
 ## API:
-- `@NonNull List<@NonNull String> getInvenotriesNames(@NonNull Player player) throws Exception` - list player's inventories;
-- `void saveInventory(@NonNull Player player, @NonNull String name) throws Exception` - save players's inventory;
-- `void setInventory(@NonNull Player player, @NonNull String name) throws Exception` - set player's inventory.
+- `@NonNull List<@NonNull String> getInvenotriesNames(@NonNull Player player) throws Exception`
+  - list player's inventories;
+- `void saveInventory(@NonNull Player player, @NonNull String name) throws Exception` - save
+  players's inventory;
+- `void setInventory(@NonNull Player player, @NonNull String name) throws Exception` - set
+  player's inventory.
 
 ## Configuration:
 
@@ -35,10 +38,14 @@ For example of using placeholders see [default config](src/main/resources/config
 
 #### List:
 - `missing-your-inventories` - shown when you issue `/inv list` and have no saved inventories;
-- `missing-inventories` - shown when you issue `/inv list <player name>` and target player has no saved inventories;
-- `your-inventories` - heading of your inventories list shown after issuing `/inv list` when you have saved inventories;
-- `inventories` - heading of target player inventories list shown after issuing `/inv list <player name>` when target player has saved inventories;
-- `inventory` - item of inventories list shown after issuing `/inv list [player name]` and target player has saved inventories.
+- `missing-inventories` - shown when you issue `/inv list <player name>` and target player has no
+  saved inventories;
+- `your-inventories` - heading of your inventories list shown after issuing `/inv list` when
+  you have saved inventories;
+- `inventories` - heading of target player inventories list shown after issuing
+  `/inv list <player name>` when target player has saved inventories;
+- `inventory` - item of inventories list shown after issuing `/inv list [player name]` and target
+  player has saved inventories.
 
 #### Save:
 - `save-your-inventory` - shown after issuing `/inv save <inventory name>`;
