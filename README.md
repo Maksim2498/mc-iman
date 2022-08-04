@@ -24,7 +24,7 @@ The following is it's messages names.
 Messages can contain placeholders like <player>.
 For example of using placeholders see [default config](src/main/resources/config.yml).
 
-## `message` Section:
+### `message` Section:
 
 #### Error:
 - `missing-subcommand` - `/inv` called without parameters;
