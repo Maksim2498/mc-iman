@@ -23,3 +23,7 @@ messages:
   # Set:
   set-your-inventory: "Your inventory has been set to <inventory>."
   set-inventory: "<player>'s inventory has been set to <inventory>."
+
+persistence:
+  method: file
+  dir-name: inventory_database
