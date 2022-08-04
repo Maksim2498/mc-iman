@@ -50,14 +50,19 @@ For example of using placeholders see [default config](src/main/resources/config
 
 Plugin provides you a list of permissions for every subcommand and it's every variation.
 
+- `iman.inv` - run any subcommand.
+
 ### List:
+- `iman.inv.list` - list inventories;
 - `iman.inv.list.self` - list your own inventories;
 - `iman.inv.list.other` - list others' inventories.
 
 ### Save:
+- `iman.inv.save` - save inventories;
 - `iman.inv.save.self` - save your own inventory;
 - `iman.inv.save.other` - save others' inventory.
 
 ### Set:
+- `iman.inv.set` - set inventories;
 - `iman.inv.set.self` - set your own inventory;
 - `iman.inv.set.other` - set others' inventory.
