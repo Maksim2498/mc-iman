@@ -31,9 +31,10 @@ public class ListInventoriesExecutor extends BaseSubcommandExecutor {
 
         throwIfMissingPermission(sender, command, isSame ? "iman.inv.list.self" : "iman.inv.list.other");
 
-        val plugin          = getPlugin();
-        val messageProvider = plugin.getMessageProvider();
-        val list            = plugin.getInvenotriesNames(player);        
+        val plugin             = getPlugin();
+        val messageProvider    = plugin.getMessageProvider();
+        val persistenceManager = plugin.getPersistenceManager();
+        val list               = persistenceManager.getInvenotriesNames(player);
 
         if (list.isEmpty()) {
             val message = isSame

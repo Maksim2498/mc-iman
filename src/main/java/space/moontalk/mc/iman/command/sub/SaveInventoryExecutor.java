@@ -31,10 +31,11 @@ public class SaveInventoryExecutor extends BaseSubcommandExecutor {
 
         throwIfMissingPermission(sender, command, isSame ? "iman.inv.save.self" : "iman.inv.save.other");
 
-        val plugin        = getPlugin();
-        val inventoryName = args[0];
+        val plugin             = getPlugin();
+        val persistenceManager = plugin.getPersistenceManager();
+        val inventoryName      = args[0];
 
-        plugin.saveInventory(player, inventoryName);
+        persistenceManager.saveInventory(player, inventoryName);
 
         val messageProvider = plugin.getMessageProvider();
         val message         = isSame 

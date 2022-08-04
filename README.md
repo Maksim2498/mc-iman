@@ -17,17 +17,28 @@ other plugins and respective commands for in-game use.
 
 ## API:
 
+To use API you have to get plugin object and then get it's `PersistenceManager` object using following method:
+
+```java
+@NonNull PersistenceManager getPersistenceManager()
+```
+
+The following is the list of `PersistenceManager` methods.
+
 List player's inventories:
+
 ```java
 @NonNull List<@NonNull String> getInvenotriesNames(@NonNull Player player) throws Exception
 ```
  
 Save player's inventory:
+
 ```java
 void saveInventory(@NonNull Player player, @NonNull String name) throws Exception
 ```
 
 Set player's inventory:
+
 ```java
 void setInventory(@NonNull Player player, @NonNull String name) throws Exception
 ```
