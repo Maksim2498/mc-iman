@@ -1,11 +1,12 @@
 # Minecraft Inventory Manager Plugin
 
 This plugin provides inventory managment API for
-another plugins and respective commands for server operators.
+other plugins and respective commands for in-game use.
 
 **Warning: plugin isn't finished yet, it's just a preview.**
 
 ## Commands:
+
 - `/inventory list [player name]` - list player's inventories;
 - `/inventory save <inventory name> [player name]` - save player's inventory;
 - `/inventory set <inventory name> [player name]` - set player's inventory.
@@ -13,65 +14,74 @@ another plugins and respective commands for server operators.
 *`/inv` alias is also available.*
 
 ## API:
-- `@NonNull List<@NonNull String> getInvenotriesNames(@NonNull Player player) throws Exception`
-  - list player's inventories;
-- `void saveInventory(@NonNull Player player, @NonNull String name) throws Exception` - save
-  players's inventory;
-- `void setInventory(@NonNull Player player, @NonNull String name) throws Exception` - set
-  player's inventory.
+
+List player's inventories:
+```java
+@NonNull List<@NonNull String> getInvenotriesNames(@NonNull Player player) throws Exception
+```
+ 
+Save player's inventory:
+```java
+void saveInventory(@NonNull Player player, @NonNull String name) throws Exception
+```
+
+Set player's inventory:
+```java
+void setInventory(@NonNull Player player, @NonNull String name) throws Exception
+```
 
 ## Configuration:
 
-You can configure plugin's messages.
-The following is it's messages names.
-Messages can contain placeholders like <player>.
-For example of using placeholders see [default config](src/main/resources/config.yml).
+You can configure plugin's messages and persistence properties.
+The following is a set of property tables divided by sections.
 
 ### `message` Section:
 
-#### Error:
-- `missing-subcommand` - `/inv` called without parameters;
-- `invalid-subcommand` - `/inv` called with invalid first parameter;
-- `invalid-args-num` - `/inv <subcommand name>` called with invalid number of arguments;
-- `not-a-player` - issued version of a command must be run by a player;
-- `player-not-found` - specified player was not found.
+This section specifies messages that the plugins sends under certain criteria.
+Messages can contain placeholders like \<player\>.
+For example of using placeholders see [default config](src/main/resources/config.yml).
 
-#### List:
-- `missing-your-inventories` - shown when you issue `/inv list` and have no saved inventories;
-- `missing-inventories` - shown when you issue `/inv list <player name>` and target player has no
-  saved inventories;
-- `your-inventories` - heading of your inventories list shown after issuing `/inv list` when
-  you have saved inventories;
-- `inventories` - heading of target player inventories list shown after issuing
-  `/inv list <player name>` when target player has saved inventories;
-- `inventory` - item of inventories list shown after issuing `/inv list [player name]` and target
-  player has saved inventories.
+| Message                    | Shown when                                                                                          |
+|----------------------------|-----------------------------------------------------------------------------------------------------|
+| `missing-subcommand`       | `/inv` issued without parameters                                                                    |
+| `invalid-subcommand`       | `/inv` issued with invalid first parameter                                                          |
+| `invalid-args-num`         | `/inv <subcommand>` issued with invalid number of arguments                                         |
+| `not-a-player`             | version of command only for players issued not by a player                                          |
+| `player-not-found`         | specified player was not found                                                                      |
+| `missing-your-inventories` | you issue `/inv list` and had no saved inventories                                                  |
+| `missing-inventories`      | `/inv list <player name>` issued and specified player had no saved inventories                      |
+| `your-inventories`         | you issue `/inv list` and had saved inventories (inventory list header)                             |
+| `inventories`              | `/inv list <player name>` issued and specified player had saved inventories (inventory list header) |
+| `inventory`                | `/inv list [player name]` and you (or specified player) had saved inventories (inventory list item) |
+| `save-your-inventory`      | `/inv save <inventory name> [your name]` issued                                                     |
+| `save-inventory`           | `/inv save <inventory name> <player name>` issued                                                   |
+| `set-your-inventory`       | `/inv set <inventory name> [your name]` issued                                                      |
+| `set-inventory`            | `/inv set <inventory name> <player name>` issued                                                    |
+  
+### `persistence` Section:
 
-#### Save:
-- `save-your-inventory` - shown after issuing `/inv save <inventory name>`;
-- `save-inventory` - show after issuing `/inv save <inventory name> <player name>`.
+This section specifies how and where to store inventories.
 
-#### Set:
-- `set-your-inventory` - shown after issuing `/inv set <inventory name>`;
-- `set-inventory` - show after issuing `/inv set <inventory name> <player name>`.
-
+| Option     | Value      | Description                                                                                                     |
+|------------|------------|-----------------------------------------------------------------------------------------------------------------|
+| `method`   | `file`     | Specifies storage method (whether to store data in plain files or in database (databases aren't yet supported)) |
+| `dir-name` | **string** | Specifies directory name where to store data if specified `method` is `file`                                    |
+  
+**Warning: currently options of this section doesn't effect plugin's behavior.**
+  
 ## Permissions:
 
 Plugin provides you a list of permissions for every subcommand and it's every variation.
 
-- `iman.inv` - run any subcommand.
-
-### List:
-- `iman.inv.list` - list inventories;
-- `iman.inv.list.self` - list your own inventories;
-- `iman.inv.list.other` - list others' inventories.
-
-### Save:
-- `iman.inv.save` - save inventories;
-- `iman.inv.save.self` - save your own inventory;
-- `iman.inv.save.other` - save others' inventory.
-
-### Set:
-- `iman.inv.set` - set inventories;
-- `iman.inv.set.self` - set your own inventory;
-- `iman.inv.set.other` - set others' inventory.
+| Permission            | Allowes to                | Default  |
+|-----------------------|---------------------------|----------|
+| `iman.inv`            | run any subcommand        | **op**   |
+| `iman.inv.list`       | list inventories          | **op**   |
+| `iman.inv.list.self`  | list your own inventories | **true** |
+| `iman.inv.list.other` | list others' inventories  | **op**   |
+| `iman.inv.save`       | save inventories          | **op**   |
+| `iman.inv.save.self`  | save your own inventory   | **op**   |
+| `iman.inv.save.other` | save others' inventory    | **op**   |
+| `iman.inv.set`        | set inventories           | **op**   |
+| `iman.inv.set.self`   | set your own inventory    | **op**   |
+| `iman.inv.set.other`  | set others' inventory     | **op**   |
