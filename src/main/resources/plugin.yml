@@ -2,9 +2,11 @@ name: Iman
 version: '${project.version}'
 description: '${project.description}'
 author: maksim2498
+
 main: space.moontalk.mc.iman.Iman
 database: true
 api-version: 1.13
+
 commands:
   inventory:
     aliases: [inv]
@@ -14,22 +16,63 @@ commands:
       /<command> list [player name]
       /<command> set <inventory name> [player name]
       /<command> save <inventory name> [player name]
+
 permissions:
+  iman.inv:
+    description: Allowes players to manage invenotries;
+    default: op
+    children:
+      iman.inv.list: true
+      iman.inv.save: true
+      iman.inv.set: true
+
+  # List:
+
+  iman.inv.list:
+    description: Allowes players to list invenotries.
+    default: op
+    children:
+      iman.inv.list.self: true
+      iman.inv.list.other: true
+
   iman.inv.list.self:
-    description: Allowes you to list your own invenotries.
+    description: Allowes players to list your own invenotries.
     default: true
+
   iman.inv.list.other:
-    description: Allowes you to list other's invenotries.
-    default: op 
+    description: Allowes players to list other's invenotries.
+    default: op
+
+  # Save:
+
+  iman.inv.save:
+    description: Allowes players to save invenotries;
+    default: op
+    children:
+      iman.inv.save.self: true
+      iman.inv.save.other: true
+
   iman.inv.save.self:
-    description: Allowes you to save your own inventory.
+    description: Allowes players to save your own inventory.
     default: op
+
   iman.inv.save.other:
-    description: Allowes you to save other's inventory.
+    description: Allowes players to save other's inventory.
     default: op
+
+  # Set:
+  
+  iman.inv.set:
+    description: Allowes players to set invenotries;
+    default: op
+    children:
+      iman.inv.set.self: true
+      iman.inv.set.self: true
+
   iman.inv.set.self:
-    description: Allowes you to set your own inventory.
+    description: Allowes players to set your own inventory.
     default: op
+
   iman.inv.set.other:
-    description: Allowes you to set other's inventory.
+    description: Allowes players to set other's inventory.
     default: op
