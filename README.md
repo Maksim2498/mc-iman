@@ -57,7 +57,7 @@ For example of using placeholders see [default config](src/main/resources/config
 | `save-inventory`           | `/inv save <inventory name> <player name>` issued                                                   |
 | `set-your-inventory`       | `/inv set <inventory name> [your name]` issued                                                      |
 | `set-inventory`            | `/inv set <inventory name> <player name>` issued                                                    |
-  
+
 ### `persistence` Section:
 
 This section specifies how and where to store inventories.
@@ -66,9 +66,9 @@ This section specifies how and where to store inventories.
 |------------|------------|---------------------------------------------------------------------------------------------------------------------|
 | `method`   | `file`     | Specifies storage method (whether to store data in plain files or in database (only file storage is now available)) |
 | `dir-name` | **string** | Specifies directory name where to store data if specified `method` is `file`                                        |
-  
+
 **Warning: currently options of this section doesn't effect plugin's behavior.**
-  
+
 ## Permissions:
 
 Plugin provides you a list of permissions for every subcommand and it's every variation.
