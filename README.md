@@ -1,6 +1,6 @@
 ![Logo](/images/logo.png)
 
-# Minecraft Inventory Manager Plugin
+# IMan - Minecraft Inventory Manager Plugin
 
 This plugin provides inventory managment API for
 other plugins and respective commands for in-game use.
