@@ -1,3 +1,5 @@
+![Logo](/images/logo.png)
+
 # Minecraft Inventory Manager Plugin
 
 This plugin provides inventory managment API for
@@ -39,7 +41,7 @@ The following is a set of property tables divided by sections.
 
 This section specifies messages that the plugins sends under certain criteria.
 Messages can contain placeholders like \<player\>.
-For example of using placeholders see [default config](src/main/resources/config.yml).
+For example of using placeholders see [default config](/src/main/resources/config.yml).
 
 | Message                    | Shown when                                                                                          |
 |----------------------------|-----------------------------------------------------------------------------------------------------|
