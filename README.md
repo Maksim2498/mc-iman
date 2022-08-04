@@ -62,10 +62,10 @@ For example of using placeholders see [default config](src/main/resources/config
 
 This section specifies how and where to store inventories.
 
-| Option     | Value      | Description                                                                                                     |
-|------------|------------|-----------------------------------------------------------------------------------------------------------------|
-| `method`   | `file`     | Specifies storage method (whether to store data in plain files or in database (databases aren't yet supported)) |
-| `dir-name` | **string** | Specifies directory name where to store data if specified `method` is `file`                                    |
+| Option     | Value      | Description                                                                                                         |
+|------------|------------|---------------------------------------------------------------------------------------------------------------------|
+| `method`   | `file`     | Specifies storage method (whether to store data in plain files or in database (only file storage is now available)) |
+| `dir-name` | **string** | Specifies directory name where to store data if specified `method` is `file`                                        |
   
 **Warning: currently options of this section doesn't effect plugin's behavior.**
   
