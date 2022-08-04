@@ -34,7 +34,7 @@ public class SaveInventoryExecutor extends BaseSubcommandExecutor {
         val plugin        = getPlugin();
         val inventoryName = args[0];
 
-        plugin.saveInventoryUnsafe(player, inventoryName);
+        plugin.saveInventory(player, inventoryName);
 
         val messageProvider = plugin.getMessageProvider();
         val message         = isSame 

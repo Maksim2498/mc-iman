@@ -33,7 +33,7 @@ public class ListInventoriesExecutor extends BaseSubcommandExecutor {
 
         val plugin          = getPlugin();
         val messageProvider = plugin.getMessageProvider();
-        val list            = plugin.getInvenotriesNamesUnsafe(player);        
+        val list            = plugin.getInvenotriesNames(player);        
 
         if (list.isEmpty()) {
             val message = isSame
