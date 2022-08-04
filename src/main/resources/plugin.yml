@@ -4,7 +4,6 @@ description: '${project.description}'
 author: maksim2498
 
 main: space.moontalk.mc.iman.Iman
-database: true
 api-version: 1.13
 
 commands:

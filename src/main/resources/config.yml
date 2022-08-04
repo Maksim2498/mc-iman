@@ -1,24 +1,25 @@
 # <somthing> - is a placeholder.
 # All available placeholders for every message are used here.
 
-# Errors:
-missing-subcommand: "§cMissing subcommand."
-invalid-subcommand: "§cInvalid subcommand (<subcommand>)."
-invalid-args-num: "§cFrom <low> to <high> subcommand arguments were expected but <passed> were passed."
-not-a-player: "§cThis command is for players only."
-player-not-found: "§cPlayer <player> not found."
+messages:
+  # Errors:
+  missing-subcommand: "§cMissing subcommand."
+  invalid-subcommand: "§cInvalid subcommand (<subcommand>)."
+  invalid-args-num: "§cFrom <low> to <high> subcommand arguments were expected but <passed> were passed."
+  not-a-player: "§cThis command is for players only."
+  player-not-found: "§cPlayer <player> not found."
 
-# List:
-missing-your-inventories: "You have no inventories."
-missing-inventories: "<player> has no inventories."
-your-inventories: "Your inventories:\n"
-inventories: "<player> inventories:\n"
-inventory: "* <inventory>;\n"
+  # List:
+  missing-your-inventories: "You have no inventories."
+  missing-inventories: "<player> has no inventories."
+  your-inventories: "Your inventories:\n"
+  inventories: "<player> inventories:\n"
+  inventory: "* <inventory>;\n"
 
-# Save:
-save-your-inventory: "Your inventory has been saved as <inventory>."
-save-inventory: "<player>'s inventory has been saved as <inventory>."
+  # Save:
+  save-your-inventory: "Your inventory has been saved as <inventory>."
+  save-inventory: "<player>'s inventory has been saved as <inventory>."
 
-# Set:
-set-your-inventory: "Your inventory has been set to <inventory>."
-set-inventory: "<player>'s inventory has been set to <inventory>."
+  # Set:
+  set-your-inventory: "Your inventory has been set to <inventory>."
+  set-inventory: "<player>'s inventory has been set to <inventory>."

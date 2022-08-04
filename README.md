@@ -24,25 +24,27 @@ The following is it's messages names.
 Messages can contain placeholders like <player>.
 For example of using placeholders see [default config](src/main/resources/config.yml).
 
-### Error:
+## `message` Section:
+
+#### Error:
 - `missing-subcommand` - `/inv` called without parameters;
 - `invalid-subcommand` - `/inv` called with invalid first parameter;
 - `invalid-args-num` - `/inv <subcommand name>` called with invalid number of arguments;
 - `not-a-player` - issued version of a command must be run by a player;
 - `player-not-found` - specified player was not found.
 
-### List:
+#### List:
 - `missing-your-inventories` - shown when you issue `/inv list` and have no saved inventories;
 - `missing-inventories` - shown when you issue `/inv list <player name>` and target player has no saved inventories;
 - `your-inventories` - heading of your inventories list shown after issuing `/inv list` when you have saved inventories;
 - `inventories` - heading of target player inventories list shown after issuing `/inv list <player name>` when target player has saved inventories;
 - `inventory` - item of inventories list shown after issuing `/inv list [player name]` and target player has saved inventories.
 
-### Save:
+#### Save:
 - `save-your-inventory` - shown after issuing `/inv save <inventory name>`;
 - `save-inventory` - show after issuing `/inv save <inventory name> <player name>`.
 
-### Set:
+#### Set:
 - `set-your-inventory` - shown after issuing `/inv set <inventory name>`;
 - `set-inventory` - show after issuing `/inv set <inventory name> <player name>`.
 

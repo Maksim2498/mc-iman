@@ -32,7 +32,7 @@ public final class Iman extends JavaPlugin {
         val command   = Objects.requireNonNull(getCommand("inventory"));
         val executor  = new InventoryExecutor(this);
         val completer = new InventoryTabCompleter();
-
+        
         command.setExecutor(executor);
         command.setTabCompleter(completer);
     }

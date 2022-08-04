@@ -98,6 +98,6 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     private @NonNull String getString(@NonNull String path) {
-        return plugin.getConfig().getString(path);
+        return plugin.getConfig().getString("messages." + path);
     }
 }
