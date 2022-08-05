@@ -24,7 +24,8 @@ other plugins and respective commands for in-game use.
 
 - `/inventory list [player name]` - list player's inventories;
 - `/inventory save <inventory name> [player name]` - save player's inventory;
-- `/inventory set <inventory name> [player name]` - set player's inventory.
+- `/inventory set <inventory name> [player name]` - set player's inventory;
+- `/inventory remove <inventory name> [player name]` - remove player's inventory.
 
 *`/inv` alias is also available.*
 
