@@ -6,6 +6,7 @@
 
 - [Index](#index);
 - [About](#about);
+- [Download](#download);
 - [Commands](#commands);
 - [API](#api);
 - [Configuration](#configuration);
@@ -19,6 +20,16 @@ This plugin provides inventory managment API for
 other plugins and respective commands for in-game use.
 
 **Warning: plugin isn't finished yet, it's just a preview.**
+
+## Download
+
+See [releases section](https://github.com/Maksim2498/mc-iman/releases).
+
+## Build
+
+To build plugin you need to install [Maven](https://maven.apache.org/) first.
+Next just `cd` to plugin folder run `mvn verify`. 
+Done.
 
 ## Commands:
 
