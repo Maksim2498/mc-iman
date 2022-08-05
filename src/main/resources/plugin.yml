@@ -1,6 +1,6 @@
 name: Iman
-version: '${project.version}'
-description: '${project.description}'
+version: "${project.version}"
+description: "${project.description}"
 author: maksim2498
 
 main: space.moontalk.mc.iman.Iman
