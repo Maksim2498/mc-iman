@@ -87,6 +87,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     private void writePlayerStats(@NonNull BukkitObjectOutputStream stream, @NonNull Player player) throws Exception {
         stream.writeDouble(player.getHealth());
         stream.writeFloat(player.getExp());
+        stream.writeInt(player.getLevel());
     }
 
     private void writePlayerInventory(@NonNull BukkitObjectOutputStream stream, @NonNull Player player) throws Exception {
@@ -148,6 +149,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     private void readPlayerStats(@NonNull BukkitObjectInputStream stream, @NonNull Player player) throws Exception {
         player.setHealth(stream.readDouble());
         player.setExp(stream.readFloat());
+        player.setLevel(stream.readInt());
     }
 
     private void readPlayerInventory(@NonNull BukkitObjectInputStream stream, @NonNull Player player) throws Exception {
