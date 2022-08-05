@@ -7,6 +7,7 @@
 - [Index](#index);
 - [About](#about);
 - [Download](#download);
+- [Build](#build);
 - [Commands](#commands);
 - [API](#api);
 - [Configuration](#configuration);
