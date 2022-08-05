@@ -24,7 +24,7 @@ other plugins and respective commands for in-game use.
 
 ## Download
 
-See [releases section](https://github.com/Maksim2498/mc-iman/releases).
+See [releases page](https://github.com/Maksim2498/mc-iman/releases).
 
 ## Build
 
