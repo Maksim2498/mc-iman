@@ -12,13 +12,15 @@ commands:
     description: Manages inventories
     permission-message: "§cYou don't have permission to run this command."
     usage: |
+      
       /<command> list [player name]
       /<command> set <inventory name> [player name]
       /<command> save <inventory name> [player name]
+      /<command> remove <inventory name> [player name]
 
 permissions:
   iman.inv:
-    description: Allowes players to manage invenotries;
+    description: Allowes players to manage invenotries.
     default: op
     children:
       iman.inv.list: true
@@ -35,11 +37,11 @@ permissions:
       iman.inv.list.other: true
 
   iman.inv.list.self:
-    description: Allowes players to list your own invenotries.
+    description: Allowes players to list their own invenotries.
     default: true
 
   iman.inv.list.other:
-    description: Allowes players to list other's invenotries.
+    description: Allowes players to list others' invenotries.
     default: op
 
   # Save:
@@ -52,26 +54,43 @@ permissions:
       iman.inv.save.other: true
 
   iman.inv.save.self:
-    description: Allowes players to save your own inventory.
+    description: Allowes players to save their own inventory.
     default: op
 
   iman.inv.save.other:
-    description: Allowes players to save other's inventory.
+    description: Allowes players to save others' inventory.
     default: op
 
   # Set:
   
   iman.inv.set:
-    description: Allowes players to set invenotries;
+    description: Allowes players to set invenotries.
     default: op
     children:
       iman.inv.set.self: true
-      iman.inv.set.self: true
+      iman.inv.set.other: true
 
   iman.inv.set.self:
-    description: Allowes players to set your own inventory.
+    description: Allowes players to set their own inventory.
     default: op
 
   iman.inv.set.other:
-    description: Allowes players to set other's inventory.
+    description: Allowes players to set others' inventory.
+    default: op
+
+  # Remove:
+
+  iman.inv.remove:
+    Description: Allowes players to remove invenotries.
+    default: op
+    children:
+      iman.inv.remove.self: true
+      iman.inv.remove.other: true
+
+  iman.inv.remove.self:
+    description: Allowes player to remove their own inventories.
+    default: op
+
+  iman.inv.remove.other:
+    description: Allowes player to remove others' inventories.
     default: op

@@ -39,9 +39,31 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makePlayerNotFound(@NonNull String name) {
+    public @NonNull String makePlayerNotFound(@NonNull String playerName) {
         return getString("player-not-found")
-              .replaceAll("<player>", name);
+              .replaceAll("<player>", playerName);
+    }
+
+
+    @Override
+    public @NonNull String makeFailedToSaveInventory() {
+        return getString("failed-to-save-inventory");
+    }
+
+    @Override
+    public @NonNull String makeFailedToSetInventory() {
+        return getString("failed-to-set-inventory");
+    }
+
+    @Override
+    public @NonNull String makeFailedToRemoveInventory() {
+        return getString("failed-to-remove-inventory");
+    }
+
+    @Override
+    public @NonNull String makeMissingInventory(@NonNull String inventoryName) {
+        return getString("missing-inventory")
+              .replaceAll("<inventory>", inventoryName);
     }
 
     @Override
@@ -50,8 +72,9 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeMissingInventories(@NonNull String name) {
-        return getString("missing-inventories");
+    public @NonNull String makeMissingInventories(@NonNull String playerName) {
+        return getString("missing-inventories")
+              .replaceAll("<player>", playerName);
     }
 
     @Override
@@ -60,21 +83,21 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeInventories(@NonNull String name) {
+    public @NonNull String makeInventories(@NonNull String playerName) {
         return getString("inventories")
-              .replaceAll("<player>", name);
+              .replaceAll("<player>", playerName);
     }
 
     @Override
-    public @NonNull String makeInventory(@NonNull String name) {
+    public @NonNull String makeInventory(@NonNull String inventoryName) {
         return getString("inventory")
-              .replaceAll("<inventory>", name);
+              .replaceAll("<inventory>", inventoryName);
     }
 
     @Override
-    public @NonNull String makeSaveYourInventory(@NonNull String name) {
+    public @NonNull String makeSaveYourInventory(@NonNull String inventoryName) {
         return getString("save-your-inventory")
-              .replaceAll("<inventory>", name);
+              .replaceAll("<inventory>", inventoryName);
     }
 
     @Override
@@ -85,14 +108,27 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeSetYourInventory(@NonNull String name) {
+    public @NonNull String makeSetYourInventory(@NonNull String inventoryName) {
         return getString("set-your-inventory")
-              .replaceAll("<inventory>", name);
+              .replaceAll("<inventory>", inventoryName);
     }
 
     @Override
     public @NonNull String makeSetInventory(@NonNull String playerName, @NonNull String inventoryName) {
         return getString("set-inventory")
+              .replaceAll("<player>", playerName)
+              .replaceAll("<inventory>", inventoryName);
+    }
+
+    @Override
+    public @NonNull String makeRemoveYourInventory(@NonNull String inventoryName) {
+        return getString("remove-your-inventory")
+              .replaceAll("<inventory>", inventoryName);
+    }
+
+    @Override
+    public @NonNull String makeRemoveInventory(@NonNull String playerName, @NonNull String inventoryName) {
+        return getString("remove-inventory")
               .replaceAll("<player>", playerName)
               .replaceAll("<inventory>", inventoryName);
     }

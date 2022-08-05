@@ -56,6 +56,12 @@ Set player's inventory:
 void setInventory(@NonNull Player player, @NonNull String name) throws Exception
 ```
 
+Remove player's inventory:
+
+```java
+void removeInventory(@NonNull Player player, @NonNull String inventoryName) throws Exception
+```
+
 ## Configuration:
 
 You can configure plugin's messages and persistence properties.
@@ -67,22 +73,27 @@ This section specifies messages that the plugins sends under certain criteria.
 Messages can contain placeholders like \<player\>.
 For example of using placeholders see [default config](/src/main/resources/config.yml).
 
-| Message                    | Shown when                                                                                          |
-|----------------------------|-----------------------------------------------------------------------------------------------------|
-| `missing-subcommand`       | `/inv` issued without parameters                                                                    |
-| `invalid-subcommand`       | `/inv` issued with invalid first parameter                                                          |
-| `invalid-args-num`         | `/inv <subcommand>` issued with invalid number of arguments                                         |
-| `not-a-player`             | version of command only for players issued not by a player                                          |
-| `player-not-found`         | specified player was not found                                                                      |
-| `missing-your-inventories` | you issue `/inv list` and had no saved inventories                                                  |
-| `missing-inventories`      | `/inv list <player name>` issued and specified player had no saved inventories                      |
-| `your-inventories`         | you issue `/inv list` and had saved inventories (inventory list header)                             |
-| `inventories`              | `/inv list <player name>` issued and specified player had saved inventories (inventory list header) |
-| `inventory`                | `/inv list [player name]` and you (or specified player) had saved inventories (inventory list item) |
-| `save-your-inventory`      | `/inv save <inventory name> [your name]` issued                                                     |
-| `save-inventory`           | `/inv save <inventory name> <player name>` issued                                                   |
-| `set-your-inventory`       | `/inv set <inventory name> [your name]` issued                                                      |
-| `set-inventory`            | `/inv set <inventory name> <player name>` issued                                                    |
+| Message                      | Shown when                                                                                          |
+|------------------------------|-----------------------------------------------------------------------------------------------------|
+| `missing-subcommand`         | `/inv` issued without parameters                                                                    |
+| `invalid-subcommand`         | `/inv` issued with invalid first parameter                                                          |
+| `invalid-args-num`           | `/inv <subcommand>` issued with invalid number of arguments                                         |
+| `not-a-player`               | version of command only for players issued not by a player                                          |
+| `player-not-found`           | specified player was not found                                                                      |
+| `failed-to-save-inventory`   | inventory saving failed due to server's internal error                                              |
+| `failed-to-set-inventory`    | inventory reading failed due to server's internal error                                             |
+| `failed-to-remove-inventory` | inventory removing failed due to server's internal error                                            |
+| `missing-your-inventories`   | you issue `/inv list` and had no saved inventories                                                  |
+| `missing-inventories`        | `/inv list <player name>` issued and specified player had no saved inventories                      |
+| `your-inventories`           | you issue `/inv list` and had saved inventories (inventory list header)                             |
+| `inventories`                | `/inv list <player name>` issued and specified player had saved inventories (inventory list header) |
+| `inventory`                  | `/inv list [player name]` and you (or specified player) had saved inventories (inventory list item) |
+| `save-your-inventory`        | `/inv save <inventory name> [your name]` issued                                                     |
+| `save-inventory`             | `/inv save <inventory name> <player name>` issued                                                   |
+| `set-your-inventory`         | `/inv set <inventory name> [your name]` issued                                                      |
+| `set-inventory`              | `/inv set <inventory name> <player name>` issued                                                    |
+| `remove-your-inventory`      | `/inv remove <inventory name> [your name]` issued                                                   |
+| `remove-inventory`           | `/inv remove <inventory name> <player name>` issued                                                 |
 
 ### `persistence` Section:
 
@@ -99,15 +110,18 @@ This section specifies how and where to store inventories.
 
 Plugin provides you a list of permissions for every subcommand and it's every variation.
 
-| Permission            | Allowes to                | Default  |
-|-----------------------|---------------------------|----------|
-| `iman.inv`            | run any subcommand        | **op**   |
-| `iman.inv.list`       | list inventories          | **op**   |
-| `iman.inv.list.self`  | list your own inventories | **true** |
-| `iman.inv.list.other` | list others' inventories  | **op**   |
-| `iman.inv.save`       | save inventories          | **op**   |
-| `iman.inv.save.self`  | save your own inventory   | **op**   |
-| `iman.inv.save.other` | save others' inventory    | **op**   |
-| `iman.inv.set`        | set inventories           | **op**   |
-| `iman.inv.set.self`   | set your own inventory    | **op**   |
-| `iman.inv.set.other`  | set others' inventory     | **op**   |
+| Permission              | Allowes to                  | Default  |
+|-------------------------|-----------------------------|----------|
+| `iman.inv`              | run any subcommand          | **op**   |
+| `iman.inv.list`         | list inventories            | **op**   |
+| `iman.inv.list.self`    | list your own inventories   | **true** |
+| `iman.inv.list.other`   | list others' inventories    | **op**   |
+| `iman.inv.save`         | save inventories            | **op**   |
+| `iman.inv.save.self`    | save your own inventory     | **op**   |
+| `iman.inv.save.other`   | save others' inventory      | **op**   |
+| `iman.inv.set`          | set inventories             | **op**   |
+| `iman.inv.set.self`     | set your own inventory      | **op**   |
+| `iman.inv.set.other`    | set others' inventory       | **op**   |
+| `iman.inv.remove`       | remove inventories          | **op**   | 
+| `iman.inv.remove.self`  | remove your own inventories | **op**   |
+| `iman.inv.remove.other` | remove others' inventories  | **op**   |

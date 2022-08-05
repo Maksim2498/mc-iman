@@ -28,11 +28,16 @@ public class InventoryExecutor implements CommandExecutor, PluginHolder {
     @NonNull
     private final SetInventoryExecutor setExecutor;
 
+    @NonNull 
+    private final RemoveInventoryExecutor removeExecutor;
+
     public InventoryExecutor(@NonNull Iman plugin) {
-        this.plugin  = plugin;
-        listExecutor = new ListInventoriesExecutor(plugin);
-        saveExecutor = new SaveInventoryExecutor(plugin);
-        setExecutor  = new SetInventoryExecutor(plugin);
+        this.plugin = plugin;
+
+        listExecutor   = new ListInventoriesExecutor(plugin);
+        saveExecutor   = new SaveInventoryExecutor(plugin);
+        setExecutor    = new SetInventoryExecutor(plugin);
+        removeExecutor = new RemoveInventoryExecutor(plugin);
     }
 
     @Override
@@ -43,30 +48,28 @@ public class InventoryExecutor implements CommandExecutor, PluginHolder {
         @NonNull String[]      args
     ) {
         try {
-            if (args.length == 0) {
-                val message = getPlugin().getMessageProvider().makeMissingSubcommand();
-                throw new Exception(message);
-            }
+            if (args.length == 0) 
+                throwMissingSubcommand();
 
             val subLabel       = args[0];
             val subcommandName = subLabel.toLowerCase();
             val subArgs        = Arrays.copyOfRange(args, 1, args.length);
             val executor       = switch (subcommandName) {
-                case "list" -> listExecutor;
-                case "save" -> saveExecutor ;
-                case "set"  -> setExecutor;
-                default     -> {
-                    val message = getPlugin().getMessageProvider().makeInvalidSubcommand(subcommandName);
-                    throw new Exception(message);
+                case "list"   -> listExecutor;
+                case "save"   -> saveExecutor ;
+                case "set"    -> setExecutor;
+                case "remove" -> removeExecutor;
+                default       -> {
+                    throwInvalidSubcommand(subcommandName);
+                    yield null;
                 }
             };
 
             val argsRange = executor.getArgsRange();
+            val passed    = subArgs.length;
              
-            if (!argsRange.contains(subArgs.length)) {
-                val message = getPlugin().getMessageProvider().makeInvalidArgsNum(argsRange, subArgs.length);
-                throw new Exception(message);
-            }
+            if (!argsRange.contains(passed))
+                throwInvaildArgsNum(argsRange, passed);
 
             executor.onSubcommand(sender, command, subLabel, subArgs);
         } catch (ComponentException e) {
@@ -75,5 +78,20 @@ public class InventoryExecutor implements CommandExecutor, PluginHolder {
             sender.sendMessage(e.getMessage()); 
         }
         return true;
+    }
+
+    private void throwMissingSubcommand() throws Exception {
+        val message = getPlugin().getMessageProvider().makeMissingSubcommand();
+        throw new Exception(message);
+    }
+
+    private void throwInvalidSubcommand(@NonNull String subcommand) throws Exception {
+        val message = getPlugin().getMessageProvider().makeInvalidSubcommand(subcommand);
+        throw new Exception(message);
+    }
+
+    private void throwInvaildArgsNum(@NonNull ArgsRange argsRange, int passed) throws Exception {
+        val message = getPlugin().getMessageProvider().makeInvalidArgsNum(argsRange, passed);
+        throw new Exception(message);
     }
 }

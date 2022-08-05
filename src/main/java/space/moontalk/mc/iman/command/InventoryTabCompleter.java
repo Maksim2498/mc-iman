@@ -30,6 +30,7 @@ public class InventoryTabCompleter implements TabCompleter {
                 list.add("list");
                 list.add("save");
                 list.add("set");
+                list.add("remove");
 
                 removeNotStartingWith(list, args[0]); 
 
@@ -42,8 +43,8 @@ public class InventoryTabCompleter implements TabCompleter {
             };
 
             case 3 -> switch (args[0].toLowerCase()) {
-                case "save", "set" -> getPlayersNamesStartingWith(args[2]);
-                default            -> Collections.emptyList();
+                case "save", "set", "remove" -> getPlayersNamesStartingWith(args[2]);
+                default                      -> Collections.emptyList();
             };
 
             default -> Collections.emptyList();

@@ -8,6 +8,10 @@ messages:
   invalid-args-num: "§cFrom <low> to <high> subcommand arguments were expected but <passed> were passed."
   not-a-player: "§cThis command is for players only."
   player-not-found: "§cPlayer <player> not found."
+  failed-to-save-inventory: "§cFailed to save inventory due to server's internal error."
+  failed-to-set-inventory: "§cFailed to set inventory due to server's internal error."
+  failed-to-remove-inventory: "§cFailed to remove inventory due to server's internal error."
+  missing-inventory: "§cInventory <inventory> not found."
 
   # List:
   missing-your-inventories: "You have no inventories."
@@ -24,6 +28,10 @@ messages:
   set-your-inventory: "Your inventory has been set to <inventory>."
   set-inventory: "<player>'s inventory has been set to <inventory>."
 
+  # Remove:
+  remove-your-inventory: "Your inventory <inventory> has been removed." 
+  remove-inventory: "<player>'s inventory <inventory> has been remove."
+
 persistence:
   method: file
-  dir-name: inventory_database
+  dir-name: invenotries
