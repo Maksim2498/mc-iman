@@ -8,7 +8,7 @@
 
     <name>Inventory Manager</name>
     <description>Provides means for creating and switching inventories</description>
-    <url>https://github.com/Maksim2498/iman</url>
+    <url>https://github.com/Maksim2498/mc-iman</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
