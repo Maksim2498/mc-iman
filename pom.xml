@@ -7,7 +7,7 @@
     <version>1.0.3</version>
 
     <name>Inventory Manager</name>
-    <description>Provides means for creating and switching inventories</description>
+    <description>Bukkit plugin that provides means for creating and switching inventories</description>
     <url>https://github.com/Maksim2498/mc-iman</url>
 
     <properties>
