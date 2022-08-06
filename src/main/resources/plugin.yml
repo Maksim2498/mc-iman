@@ -14,9 +14,11 @@ commands:
     usage: |
       
       /<command> list [player name]
+      /<command> ls [player name]
       /<command> set <inventory name> [player name]
       /<command> save <inventory name> [player name]
       /<command> remove <inventory name> [player name]
+      /<command> rm <inventory name> [player name]
 
 permissions:
   iman.inv:

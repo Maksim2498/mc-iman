@@ -55,11 +55,11 @@ public class InventoryExecutor implements CommandExecutor, PluginHolder {
             val subcommandName = subLabel.toLowerCase();
             val subArgs        = Arrays.copyOfRange(args, 1, args.length);
             val executor       = switch (subcommandName) {
-                case "list"   -> listExecutor;
-                case "save"   -> saveExecutor ;
-                case "set"    -> setExecutor;
-                case "remove" -> removeExecutor;
-                default       -> {
+                case "list", "ls"   -> listExecutor;
+                case "save"         -> saveExecutor ;
+                case "set"          -> setExecutor;
+                case "remove", "rm" -> removeExecutor;
+                default             -> {
                     throwInvalidSubcommand(subcommandName);
                     yield null;
                 }

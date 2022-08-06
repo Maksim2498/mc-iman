@@ -28,9 +28,11 @@ public class InventoryTabCompleter implements TabCompleter {
                 val list = new LinkedList<String>();
 
                 list.add("list");
+                list.add("ls");
                 list.add("save");
                 list.add("set");
                 list.add("remove");
+                list.add("rm");
 
                 removeNotStartingWith(list, args[0]); 
 
