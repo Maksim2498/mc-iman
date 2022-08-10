@@ -8,12 +8,15 @@ import lombok.val;
 
 import space.moontalk.mc.iman.*;
 import space.moontalk.ranges.IntegerRange;
+import space.moontalk.placeholders.DefaultSubstituter;
 
 @AllArgsConstructor
 public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     @Getter
     @NonNull
     private final Iman plugin;
+
+    private final DefaultSubstituter substituter = new DefaultSubstituter();
 
     @Override
     public @NonNull String makeMissingSubcommand() {
@@ -161,32 +164,10 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     private @NonNull String getFormatedString(@NonNull String path, @NonNull String... replacements) {
-        return replacePlaceholders(getString(path), replacements);
-    }
+        val string          = getString(path);
+        val formattedString = substituter.substitute(string, replacements);
 
-    private static @NonNull String replacePlaceholders(@NonNull String string, @NonNull String[] replacements) {
-        assert replacements.length % 2 == 0;
-
-        val substrings = splitByPlaceHolders(string);
-
-        replacePlaceholdersInSplited(substrings, replacements); 
-
-        return String.join("", substrings);
-    }
-
-    private static @NonNull String[] splitByPlaceHolders(@NonNull String string) {
-        return string.split("(?=<[^<>]*>)|(?<=<[^<>]*>)");   
-    }
-
-    private static void replacePlaceholdersInSplited(@NonNull String[] substrings, @NonNull String[] replacements) {
-        for (int i = 0; i < replacements.length; i += 2) {
-            val placeholder = replacements[i];
-            val changer     = replacements[i + 1]; 
-
-            for (int j = 0; j < substrings.length; ++j) 
-                if (substrings[j].equals(placeholder))
-                    substrings[j] = changer;
-        }
+        return formattedString;
     }
 
     private @NonNull String getString(@NonNull String path) {

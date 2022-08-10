@@ -13,6 +13,7 @@ import lombok.val;
 
 import space.moontalk.mc.iman.*;
 import space.moontalk.mc.iman.command.sub.*;
+import space.moontalk.ranges.IntegerRange;
 
 @Getter
 public class InventoryExecutor implements CommandExecutor, PluginHolder {
@@ -90,7 +91,7 @@ public class InventoryExecutor implements CommandExecutor, PluginHolder {
         throw new Exception(message);
     }
 
-    private void throwInvaildArgsNum(@NonNull ArgsRange argsRange, int passed) throws Exception {
+    private void throwInvaildArgsNum(@NonNull IntegerRange argsRange, int passed) throws Exception {
         val message = getPlugin().getMessageProvider().makeInvalidArgsNum(argsRange, passed);
         throw new Exception(message);
     }

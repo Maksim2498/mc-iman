@@ -4,7 +4,7 @@
 
     <groupId>space.moontalk.mc</groupId>
     <artifactId>iman</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
 
     <name>Inventory Manager</name>
     <description>Bukkit plugin that provides means for creating and switching inventories</description>
@@ -46,6 +46,11 @@
         <dependency>
             <groupId>space.moontalk</groupId>
             <artifactId>ranges</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>space.moontalk</groupId>
+            <artifactId>placeholders</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
