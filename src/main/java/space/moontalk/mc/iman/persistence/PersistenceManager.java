@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 public interface PersistenceManager {
-    @NonNull List<@NonNull String> getInvenotriesNames(@NonNull Player player) throws Exception;
-    void saveInventory(@NonNull Player player, @NonNull String inventoryName) throws Exception;
-    void setInventory(@NonNull Player player, @NonNull String inventoryName) throws Exception;
-    void removeInventory(@NonNull Player player, @NonNull String inventoryName) throws Exception;
+    @NotNull List<@NotNull String> getInvenotriesNames(@NotNull Player player) throws Exception;
+    void saveInventory(@NotNull Player player, @NotNull String inventoryName) throws Exception;
+    void setInventory(@NotNull Player player, @NotNull String inventoryName) throws Exception;
+    void removeInventory(@NotNull Player player, @NotNull String inventoryName) throws Exception;
 }

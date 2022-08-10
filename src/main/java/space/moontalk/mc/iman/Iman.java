@@ -5,8 +5,8 @@ import java.util.Objects;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import lombok.Getter;
 import lombok.val;
@@ -17,7 +17,7 @@ import space.moontalk.mc.iman.persistence.*;
 
 @Getter
 public final class Iman extends JavaPlugin {
-    @NonNull
+    @NotNull
     private final MessageProvider messageProvider = new DefaultMessageProvider(this);
 
     @Nullable

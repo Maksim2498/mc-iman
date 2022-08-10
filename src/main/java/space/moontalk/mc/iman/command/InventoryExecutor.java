@@ -6,7 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 import lombok.Getter;
 import lombok.val;
@@ -17,22 +17,22 @@ import space.moontalk.ranges.IntegerRange;
 
 @Getter
 public class InventoryExecutor implements CommandExecutor, PluginHolder {
-    @NonNull 
+    @NotNull 
     private final Iman plugin;
 
-    @NonNull
+    @NotNull
     private final ListInventoriesExecutor listExecutor;
 
-    @NonNull
+    @NotNull
     private final SaveInventoryExecutor saveExecutor;
 
-    @NonNull
+    @NotNull
     private final SetInventoryExecutor setExecutor;
 
-    @NonNull 
+    @NotNull 
     private final RemoveInventoryExecutor removeExecutor;
 
-    public InventoryExecutor(@NonNull Iman plugin) {
+    public InventoryExecutor(@NotNull Iman plugin) {
         this.plugin = plugin;
 
         listExecutor   = new ListInventoriesExecutor(plugin);
@@ -43,10 +43,10 @@ public class InventoryExecutor implements CommandExecutor, PluginHolder {
 
     @Override
     public boolean onCommand(
-        @NonNull CommandSender sender, 
-        @NonNull Command       command, 
-        @NonNull String        label, 
-        @NonNull String[]      args
+        @NotNull CommandSender sender, 
+        @NotNull Command       command, 
+        @NotNull String        label, 
+        @NotNull String[]      args
     ) {
         try {
             if (args.length == 0) 
@@ -86,12 +86,12 @@ public class InventoryExecutor implements CommandExecutor, PluginHolder {
         throw new Exception(message);
     }
 
-    private void throwInvalidSubcommand(@NonNull String subcommand) throws Exception {
+    private void throwInvalidSubcommand(@NotNull String subcommand) throws Exception {
         val message = getPlugin().getMessageProvider().makeInvalidSubcommand(subcommand);
         throw new Exception(message);
     }
 
-    private void throwInvaildArgsNum(@NonNull IntegerRange argsRange, int passed) throws Exception {
+    private void throwInvaildArgsNum(@NotNull IntegerRange argsRange, int passed) throws Exception {
         val message = getPlugin().getMessageProvider().makeInvalidArgsNum(argsRange, passed);
         throw new Exception(message);
     }

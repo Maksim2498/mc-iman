@@ -5,7 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,13 +16,13 @@ import space.moontalk.mc.iman.*;
 @AllArgsConstructor
 public abstract class BaseSubcommandExecutor implements SubcommandExecutor, PluginHolder {
     @Getter
-    @NonNull
+    @NotNull
     private final Iman plugin;
 
     protected void throwIfMissingPermission(
-        @NonNull CommandSender sender, 
-        @NonNull Command       command,
-        @NonNull String        permission
+        @NotNull CommandSender sender, 
+        @NotNull Command       command,
+        @NotNull String        permission
     ) throws Exception {
         if (sender.hasPermission(permission))
             return;
@@ -35,9 +35,9 @@ public abstract class BaseSubcommandExecutor implements SubcommandExecutor, Plug
         throw new ComponentException(component);
     }
 
-    protected @NonNull Player getPlayerTarget(
-        @NonNull CommandSender sender,
-        @NonNull String[]      args,
+    protected @NotNull Player getPlayerTarget(
+        @NotNull CommandSender sender,
+        @NotNull String[]      args,
         int                    argNum
     ) throws Exception {
         val target = getTarget(sender, args, argNum);
@@ -50,9 +50,9 @@ public abstract class BaseSubcommandExecutor implements SubcommandExecutor, Plug
         throw new Exception(message);
     }
 
-    protected @NonNull CommandSender getTarget(
-        @NonNull CommandSender sender,
-        @NonNull String[]      args, 
+    protected @NotNull CommandSender getTarget(
+        @NotNull CommandSender sender,
+        @NotNull String[]      args, 
         int                    argNum
     ) throws Exception {
         if (argNum >= args.length)

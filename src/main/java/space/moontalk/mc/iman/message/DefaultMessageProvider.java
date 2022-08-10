@@ -1,6 +1,6 @@
 package space.moontalk.mc.iman.message;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,18 +13,18 @@ import space.moontalk.placeholders.DefaultSubstituter;
 @AllArgsConstructor
 public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     @Getter
-    @NonNull
+    @NotNull
     private final Iman plugin;
 
     private final DefaultSubstituter substituter = new DefaultSubstituter();
 
     @Override
-    public @NonNull String makeMissingSubcommand() {
+    public @NotNull String makeMissingSubcommand() {
         return getString("missing-subcommand");
     }
 
     @Override
-    public @NonNull String makeInvalidSubcommand(@NonNull String subcommand) {
+    public @NotNull String makeInvalidSubcommand(@NotNull String subcommand) {
         return getFormatedString(
             "invalid-subcommand",
             "subcommand", subcommand
@@ -32,7 +32,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeInvalidArgsNum(@NonNull IntegerRange argsRange, int passed) {
+    public @NotNull String makeInvalidArgsNum(@NotNull IntegerRange argsRange, int passed) {
         return getFormatedString(
             "invalid-args-num",
             "low",    Integer.toString(argsRange.getLow()),
@@ -42,12 +42,12 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeNotAPlayer() {
+    public @NotNull String makeNotAPlayer() {
         return getString("not-a-player"); 
     }
 
     @Override
-    public @NonNull String makePlayerNotFound(@NonNull String playerName) {
+    public @NotNull String makePlayerNotFound(@NotNull String playerName) {
         return getFormatedString(
             "player-not-found",
             "player", playerName
@@ -56,22 +56,22 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
 
 
     @Override
-    public @NonNull String makeFailedToSaveInventory() {
+    public @NotNull String makeFailedToSaveInventory() {
         return getString("failed-to-save-inventory");
     }
 
     @Override
-    public @NonNull String makeFailedToSetInventory() {
+    public @NotNull String makeFailedToSetInventory() {
         return getString("failed-to-set-inventory");
     }
 
     @Override
-    public @NonNull String makeFailedToRemoveInventory() {
+    public @NotNull String makeFailedToRemoveInventory() {
         return getString("failed-to-remove-inventory");
     }
 
     @Override
-    public @NonNull String makeMissingInventory(@NonNull String inventoryName) {
+    public @NotNull String makeMissingInventory(@NotNull String inventoryName) {
         return getFormatedString(
             "missing-inventory",
             "inventory", inventoryName
@@ -79,12 +79,12 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeMissingYourInvenotries() {
+    public @NotNull String makeMissingYourInvenotries() {
         return getString("missing-your-inventories");
     }
 
     @Override
-    public @NonNull String makeMissingInventories(@NonNull String playerName) {
+    public @NotNull String makeMissingInventories(@NotNull String playerName) {
         return getFormatedString(
             "missing-inventories",
             "player", playerName
@@ -92,12 +92,12 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeYourInventories() {
+    public @NotNull String makeYourInventories() {
         return getString("your-inventories");
     }
 
     @Override
-    public @NonNull String makeInventories(@NonNull String playerName) {
+    public @NotNull String makeInventories(@NotNull String playerName) {
         return getFormatedString(
             "inventories",
             "player", playerName
@@ -105,7 +105,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeInventory(@NonNull String inventoryName) {
+    public @NotNull String makeInventory(@NotNull String inventoryName) {
         return getFormatedString(
             "inventory",
             "inventory", inventoryName
@@ -113,7 +113,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeSaveYourInventory(@NonNull String inventoryName) {
+    public @NotNull String makeSaveYourInventory(@NotNull String inventoryName) {
         return getFormatedString(
             "save-your-inventory",
             "inventory", inventoryName
@@ -121,7 +121,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeSaveInventory(@NonNull String playerName, @NonNull String inventoryName) {
+    public @NotNull String makeSaveInventory(@NotNull String playerName, @NotNull String inventoryName) {
         return getFormatedString(
             "save-inventory",
             "player",    playerName,
@@ -130,7 +130,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeSetYourInventory(@NonNull String inventoryName) {
+    public @NotNull String makeSetYourInventory(@NotNull String inventoryName) {
         return getFormatedString(
             "set-your-inventory",
             "inventory", inventoryName
@@ -138,7 +138,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeSetInventory(@NonNull String playerName, @NonNull String inventoryName) {
+    public @NotNull String makeSetInventory(@NotNull String playerName, @NotNull String inventoryName) {
         return getFormatedString(
             "set-inventory",
             "player",    playerName,
@@ -147,7 +147,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeRemoveYourInventory(@NonNull String inventoryName) {
+    public @NotNull String makeRemoveYourInventory(@NotNull String inventoryName) {
         return getFormatedString(
             "remove-your-inventory",
             "inventory", inventoryName
@@ -155,7 +155,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeRemoveInventory(@NonNull String playerName, @NonNull String inventoryName) {
+    public @NotNull String makeRemoveInventory(@NotNull String playerName, @NotNull String inventoryName) {
         return getFormatedString(
             "remove-inventory",
             "player",    playerName,
@@ -163,14 +163,14 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
         );
     }
 
-    private @NonNull String getFormatedString(@NonNull String path, @NonNull String... replacements) {
+    private @NotNull String getFormatedString(@NotNull String path, @NotNull String... replacements) {
         val string          = getString(path);
         val formattedString = substituter.substitute(string, replacements);
 
         return formattedString;
     }
 
-    private @NonNull String getString(@NonNull String path) {
+    private @NotNull String getString(@NotNull String path) {
         return plugin.getConfig().getString("messages." + path);
     }
 }

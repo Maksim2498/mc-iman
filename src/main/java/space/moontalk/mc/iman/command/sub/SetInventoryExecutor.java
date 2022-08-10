@@ -3,7 +3,7 @@ package space.moontalk.mc.iman.command.sub;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 import lombok.val;
 
@@ -11,21 +11,21 @@ import space.moontalk.ranges.IntegerRange;
 import space.moontalk.mc.iman.*;
 
 public class SetInventoryExecutor extends BaseSubcommandExecutor {
-    public SetInventoryExecutor(@NonNull Iman plugin) {
+    public SetInventoryExecutor(@NotNull Iman plugin) {
         super(plugin);
     }
 
     @Override
-    public @NonNull IntegerRange getArgsRange() {
+    public @NotNull IntegerRange getArgsRange() {
         return new IntegerRange(1, 2);
     }
 
     @Override
     public void onSubcommand(
-        @NonNull CommandSender sender, 
-        @NonNull Command       command,
-        @NonNull String        label, 
-        @NonNull String[]      args
+        @NotNull CommandSender sender, 
+        @NotNull Command       command,
+        @NotNull String        label, 
+        @NotNull String[]      args
     ) throws Exception {
         val player = getPlayerTarget(sender, args, 1);
         val isSame = sender == player;

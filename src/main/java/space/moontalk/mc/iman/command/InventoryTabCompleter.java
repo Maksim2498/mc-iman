@@ -10,18 +10,18 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import lombok.val;
 
 public class InventoryTabCompleter implements TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(
-        @NonNull CommandSender sender,
-        @NonNull Command       command,
-        @NonNull String        alias, 
-        @NonNull String[]      args
+        @NotNull CommandSender sender,
+        @NotNull Command       command,
+        @NotNull String        alias, 
+        @NotNull String[]      args
     ) {
         return switch (args.length) {
             case 1 -> {
@@ -53,15 +53,15 @@ public class InventoryTabCompleter implements TabCompleter {
         };
     }
 
-    private static @NonNull List<@NonNull String> getPlayersNamesStartingWith(@NonNull String prefix) {
+    private static @NotNull List<@NotNull String> getPlayersNamesStartingWith(@NotNull String prefix) {
         return removeNotStartingWith(getPlayersNames(), prefix);
     }
 
-    private static @NonNull List<@NonNull String> getPlayersNames() {
+    private static @NotNull List<@NotNull String> getPlayersNames() {
         return Bukkit.getOnlinePlayers().stream().map(p -> p.getName()).collect(Collectors.toList());
     }
 
-    private static @NonNull List<@NonNull String> removeNotStartingWith(@NonNull List<String> strings, @NonNull String prefix) {
+    private static @NotNull List<@NotNull String> removeNotStartingWith(@NotNull List<String> strings, @NotNull String prefix) {
         val lowerPrefix = prefix.toLowerCase();
         strings.removeIf(s -> !s.toLowerCase().startsWith(lowerPrefix));
         return strings;

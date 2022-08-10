@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 import lombok.Getter;
 import lombok.val;
@@ -24,12 +24,12 @@ import space.moontalk.mc.iman.*;
 
 @Getter
 public class FilePersistenceManager implements PersistenceManager, PluginHolder {
-    public static final @NonNull String EXTENSION = ".inv";
+    public static final @NotNull String EXTENSION = ".inv";
 
-    @NonNull
+    @NotNull
     private final Iman plugin;
 
-    @NonNull
+    @NotNull
     private final File databaseFile;
 
     public FilePersistenceManager(Iman plugin) throws Exception {
@@ -47,7 +47,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     @Override
-    public @NonNull List<@NonNull String> getInvenotriesNames(@NonNull Player player) throws Exception {
+    public @NotNull List<@NotNull String> getInvenotriesNames(@NotNull Player player) throws Exception {
         val dir   = getPlayerFile(player);
         val files = dir.listFiles();
 
@@ -60,7 +60,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     @Override
-    public void saveInventory(@NonNull Player player, @NonNull String inventoryName) throws Exception {
+    public void saveInventory(@NotNull Player player, @NotNull String inventoryName) throws Exception {
         BukkitObjectOutputStream stream = null;
 
         try {
@@ -79,18 +79,18 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
         }
     }
 
-    private void writePlayer(@NonNull BukkitObjectOutputStream stream, @NonNull Player player) throws Exception {
+    private void writePlayer(@NotNull BukkitObjectOutputStream stream, @NotNull Player player) throws Exception {
         writePlayerStats(stream, player);
         writePlayerInventory(stream, player);
     }
 
-    private void writePlayerStats(@NonNull BukkitObjectOutputStream stream, @NonNull Player player) throws Exception {
+    private void writePlayerStats(@NotNull BukkitObjectOutputStream stream, @NotNull Player player) throws Exception {
         stream.writeDouble(player.getHealth());
         stream.writeFloat(player.getExp());
         stream.writeInt(player.getLevel());
     }
 
-    private void writePlayerInventory(@NonNull BukkitObjectOutputStream stream, @NonNull Player player) throws Exception {
+    private void writePlayerInventory(@NotNull BukkitObjectOutputStream stream, @NotNull Player player) throws Exception {
         val inventory     = player.getInventory();
         val inventorySize = inventory.getSize();
 
@@ -101,15 +101,15 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     private void onSaveError(
-        @NonNull Exception exception, 
-        @NonNull Player    player, 
-        @NonNull String    inventoryName
+        @NotNull Exception exception, 
+        @NotNull Player    player, 
+        @NotNull String    inventoryName
     ) throws Exception {
         logFailedToSave(exception, player, inventoryName);
         throwFailedToSave();
     }
 
-    private void logFailedToSave(@NonNull Exception exception, @NonNull Player player, @NonNull String inventoryName) {
+    private void logFailedToSave(@NotNull Exception exception, @NotNull Player player, @NotNull String inventoryName) {
         logFailed(exception, player, inventoryName, "save");
     }
 
@@ -121,7 +121,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     @Override
-    public void setInventory(@NonNull Player player, @NonNull String inventoryName) throws Exception {
+    public void setInventory(@NotNull Player player, @NotNull String inventoryName) throws Exception {
         BukkitObjectInputStream stream = null;
 
         try {
@@ -141,18 +141,18 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
         }
     }
 
-    private void readPlayer(@NonNull BukkitObjectInputStream stream, @NonNull Player player) throws Exception {
+    private void readPlayer(@NotNull BukkitObjectInputStream stream, @NotNull Player player) throws Exception {
         readPlayerStats(stream, player);
         readPlayerInventory(stream, player);
     }
 
-    private void readPlayerStats(@NonNull BukkitObjectInputStream stream, @NonNull Player player) throws Exception {
+    private void readPlayerStats(@NotNull BukkitObjectInputStream stream, @NotNull Player player) throws Exception {
         player.setHealth(stream.readDouble());
         player.setExp(stream.readFloat());
         player.setLevel(stream.readInt());
     }
 
-    private void readPlayerInventory(@NonNull BukkitObjectInputStream stream, @NonNull Player player) throws Exception {
+    private void readPlayerInventory(@NotNull BukkitObjectInputStream stream, @NotNull Player player) throws Exception {
         val inventory     = player.getInventory();
         val inventorySize = inventory.getSize();
         
@@ -163,15 +163,15 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     private void onSetError(
-        @NonNull Exception exception,
-        @NonNull Player    player,
-        @NonNull String    inventoryName
+        @NotNull Exception exception,
+        @NotNull Player    player,
+        @NotNull String    inventoryName
     ) throws Exception {
         logFailedToSet(exception, player, inventoryName);
         throwFailedToSet();
     }
 
-    private void logFailedToSet(@NonNull Exception exception, @NonNull Player player, @NonNull String inventoryName) {
+    private void logFailedToSet(@NotNull Exception exception, @NotNull Player player, @NotNull String inventoryName) {
         logFailed(exception, player, inventoryName, "set");
     }
 
@@ -183,7 +183,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     @Override
-    public void removeInventory(@NonNull Player player, @NonNull String inventoryName) throws Exception {
+    public void removeInventory(@NotNull Player player, @NotNull String inventoryName) throws Exception {
         try {
             val file = getPlayerInventoryFile(player, inventoryName);
 
@@ -196,7 +196,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
         }
     }
 
-    private void throwMissingInventory(@NonNull String inventoryName) throws Exception {
+    private void throwMissingInventory(@NotNull String inventoryName) throws Exception {
         val messageProvider = plugin.getMessageProvider();
         val message         = messageProvider.makeMissingInventory(inventoryName);
 
@@ -204,15 +204,15 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     private void onRemoveError(
-        @NonNull Exception exception, 
-        @NonNull Player    player,
-        @NonNull String    inventoryName
+        @NotNull Exception exception, 
+        @NotNull Player    player,
+        @NotNull String    inventoryName
     ) throws Exception {
         logFailedToRemove(exception, player, inventoryName);
         throwFailedToRemove();
     }
 
-    private void logFailedToRemove(@NonNull Exception exception, @NonNull Player player, @NonNull String inventoryName) {
+    private void logFailedToRemove(@NotNull Exception exception, @NotNull Player player, @NotNull String inventoryName) {
         logFailed(exception, player, inventoryName, "remove");
     }
 
@@ -224,10 +224,10 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     private void logFailed(
-        @NonNull Exception exception,
-        @NonNull Player    player,
-        @NonNull String    inventoryName,
-        @NonNull String    what
+        @NotNull Exception exception,
+        @NotNull Player    player,
+        @NotNull String    inventoryName,
+        @NotNull String    what
     ) {
         val logger        = plugin.getLogger();
         val loggerMessage = String.format(
@@ -241,11 +241,11 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
         logger.info(loggerMessage);
     }
 
-    public File getPlayerInventoryFile(@NonNull Player player, @NonNull String inventoryName) {
+    public File getPlayerInventoryFile(@NotNull Player player, @NotNull String inventoryName) {
         return new File(getPlayerFile(player), inventoryName + EXTENSION);
     }
 
-    public File getPlayerFile(@NonNull Player player) {
+    public File getPlayerFile(@NotNull Player player) {
         val file = new File(databaseFile, player.getUniqueId().toString());
     
         file.mkdir();

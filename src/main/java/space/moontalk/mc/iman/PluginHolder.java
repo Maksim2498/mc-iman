@@ -1,7 +1,7 @@
 package space.moontalk.mc.iman;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 public interface PluginHolder {
-    @NonNull Iman getPlugin();
+    @NotNull Iman getPlugin();
 }

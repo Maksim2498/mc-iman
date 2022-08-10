@@ -3,17 +3,17 @@ package space.moontalk.mc.iman.command.sub;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 import space.moontalk.ranges.IntegerRange;
 
 public interface SubcommandExecutor {
-    @NonNull IntegerRange getArgsRange();
+    @NotNull IntegerRange getArgsRange();
 
     void onSubcommand(
-        @NonNull CommandSender sender, 
-        @NonNull Command       command,
-        @NonNull String        label, 
-        @NonNull String[]      args
+        @NotNull CommandSender sender, 
+        @NotNull Command       command,
+        @NotNull String        label, 
+        @NotNull String[]      args
     ) throws Exception;
 }
