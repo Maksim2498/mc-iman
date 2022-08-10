@@ -27,7 +27,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeInvalidSubcommand(@NonNull String subcommand) {
         return getFormatedString(
             "invalid-subcommand",
-            "<subcommand>", subcommand
+            "subcommand", subcommand
         );
     }
 
@@ -35,9 +35,9 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeInvalidArgsNum(@NonNull IntegerRange argsRange, int passed) {
         return getFormatedString(
             "invalid-args-num",
-            "<low>",    Integer.toString(argsRange.getLow()),
-            "<high>",   Integer.toString(argsRange.getHigh()),
-            "<passed>", Integer.toString(passed)
+            "low",    Integer.toString(argsRange.getLow()),
+            "high",   Integer.toString(argsRange.getHigh()),
+            "passed", Integer.toString(passed)
         );
     }
 
@@ -50,7 +50,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makePlayerNotFound(@NonNull String playerName) {
         return getFormatedString(
             "player-not-found",
-            "<player>", playerName
+            "player", playerName
         );
     }
 
@@ -74,7 +74,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeMissingInventory(@NonNull String inventoryName) {
         return getFormatedString(
             "missing-inventory",
-            "<inventory>", inventoryName
+            "inventory", inventoryName
         );
     }
 
@@ -87,7 +87,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeMissingInventories(@NonNull String playerName) {
         return getFormatedString(
             "missing-inventories",
-            "<player>", playerName
+            "player", playerName
         );
     }
 
@@ -100,7 +100,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeInventories(@NonNull String playerName) {
         return getFormatedString(
             "inventories",
-            "<player>", playerName
+            "player", playerName
         );
     }
 
@@ -108,7 +108,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeInventory(@NonNull String inventoryName) {
         return getFormatedString(
             "inventory",
-            "<inventory>", inventoryName
+            "inventory", inventoryName
         );
     }
 
@@ -116,7 +116,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeSaveYourInventory(@NonNull String inventoryName) {
         return getFormatedString(
             "save-your-inventory",
-            "<inventory>", inventoryName
+            "inventory", inventoryName
         );
     }
 
@@ -124,8 +124,8 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeSaveInventory(@NonNull String playerName, @NonNull String inventoryName) {
         return getFormatedString(
             "save-inventory",
-            "<player>",    playerName,
-            "<inventory>", inventoryName
+            "player",    playerName,
+            "inventory", inventoryName
         );
     }
 
@@ -133,7 +133,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeSetYourInventory(@NonNull String inventoryName) {
         return getFormatedString(
             "set-your-inventory",
-            "<inventory>", inventoryName
+            "inventory", inventoryName
         );
     }
 
@@ -141,8 +141,8 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeSetInventory(@NonNull String playerName, @NonNull String inventoryName) {
         return getFormatedString(
             "set-inventory",
-            "<player>",    playerName,
-            "<inventory>", inventoryName
+            "player",    playerName,
+            "inventory", inventoryName
         );
     }
 
@@ -150,7 +150,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeRemoveYourInventory(@NonNull String inventoryName) {
         return getFormatedString(
             "remove-your-inventory",
-            "<inventory>", inventoryName
+            "inventory", inventoryName
         );
     }
 
@@ -158,8 +158,8 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     public @NonNull String makeRemoveInventory(@NonNull String playerName, @NonNull String inventoryName) {
         return getFormatedString(
             "remove-inventory",
-            "<player>",    playerName,
-            "<inventory>", inventoryName
+            "player",    playerName,
+            "inventory", inventoryName
         );
     }
 
