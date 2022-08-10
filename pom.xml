@@ -67,4 +67,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>moontalk-releases</id>
+            <url>https://repo.moontalk.space/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
 </project>
