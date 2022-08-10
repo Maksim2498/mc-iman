@@ -4,7 +4,7 @@
 
     <groupId>space.moontalk.mc</groupId>
     <artifactId>iman</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
 
     <name>Inventory Manager</name>
     <description>Bukkit plugin that provides means for creating and switching inventories</description>
