@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.val;
 
 import space.moontalk.mc.iman.*;
-import space.moontalk.mc.iman.command.sub.ArgsRange;
+import space.moontalk.ranges.IntegerRange;
 
 @AllArgsConstructor
 public class DefaultMessageProvider implements MessageProvider, PluginHolder {
@@ -29,7 +29,7 @@ public class DefaultMessageProvider implements MessageProvider, PluginHolder {
     }
 
     @Override
-    public @NonNull String makeInvalidArgsNum(@NonNull ArgsRange argsRange, int passed) {
+    public @NonNull String makeInvalidArgsNum(@NonNull IntegerRange argsRange, int passed) {
         return getFormatedString(
             "invalid-args-num",
             "<low>",    Integer.toString(argsRange.getLow()),

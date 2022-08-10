@@ -5,8 +5,10 @@ import org.bukkit.command.CommandSender;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import space.moontalk.ranges.IntegerRange;
+
 public interface SubcommandExecutor {
-    @NonNull ArgsRange getArgsRange();
+    @NonNull IntegerRange getArgsRange();
 
     void onSubcommand(
         @NonNull CommandSender sender, 

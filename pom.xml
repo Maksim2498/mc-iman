@@ -4,7 +4,7 @@
 
     <groupId>space.moontalk.mc</groupId>
     <artifactId>iman</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <name>Inventory Manager</name>
     <description>Bukkit plugin that provides means for creating and switching inventories</description>
@@ -18,6 +18,10 @@
         <repository>
             <id>papermc</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>moontalk-releases</id>
+            <url>https://repo.moontalk.space/repository/maven-releases/</url>
         </repository>
     </repositories>
 
@@ -38,6 +42,11 @@
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>space.moontalk</groupId>
+            <artifactId>ranges</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 

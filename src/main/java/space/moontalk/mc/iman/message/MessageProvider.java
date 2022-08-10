@@ -2,13 +2,13 @@ package space.moontalk.mc.iman.message;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import space.moontalk.mc.iman.command.sub.ArgsRange;
+import space.moontalk.ranges.IntegerRange;
 
 public interface MessageProvider {
     // Errors:
     @NonNull String makeMissingSubcommand();
     @NonNull String makeInvalidSubcommand(@NonNull String subcommand);
-    @NonNull String makeInvalidArgsNum(@NonNull ArgsRange argsRange, int passed);
+    @NonNull String makeInvalidArgsNum(@NonNull IntegerRange argsRange, int passed);
     @NonNull String makeNotAPlayer();
     @NonNull String makePlayerNotFound(@NonNull String playerName); 
     @NonNull String makeFailedToSaveInventory();

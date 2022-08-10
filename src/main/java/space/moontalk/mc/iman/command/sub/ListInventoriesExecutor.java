@@ -7,6 +7,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 import lombok.val;
 
+import space.moontalk.ranges.IntegerRange;
 import space.moontalk.mc.iman.*;
 
 public class ListInventoriesExecutor extends BaseSubcommandExecutor {
@@ -15,8 +16,8 @@ public class ListInventoriesExecutor extends BaseSubcommandExecutor {
     }
 
     @Override
-    public @NonNull ArgsRange getArgsRange() {
-        return new ArgsRange(0, 1); 
+    public @NonNull IntegerRange getArgsRange() {
+        return new IntegerRange(0, 1); 
     }
 
     @Override
