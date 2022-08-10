@@ -7,7 +7,10 @@
 - [Index](#index);
 - [About](#about);
 - [Download](#download);
-- [Build](#build);
+- [Installation](#installation);
+    - [As Plugin](#as-plugin);
+    - [As Dependency](#as-dependency);
+- [Building](#building);
 - [Commands](#commands);
 - [API](#api);
 - [Configuration](#configuration);
@@ -26,7 +29,41 @@ other plugins and respective commands for in-game use.
 
 See [releases page](https://github.com/Maksim2498/mc-iman/releases).
 
-## Build
+## Installation 
+
+Installation method varies depending on your goal:
+wheater you want just to add plugin to your server
+or use it's API from another plugin.
+
+### As Plugin
+
+[Download](#download) latest plugin release and just put a jar in
+your server's plugins folder.
+
+### As Dependency
+
+First, add MoonTalk repository to your pom.xml:
+
+```xml
+<repository>
+    <id>moontalk<id>
+    <url>https://repo.moontalk.space/repository/maven-releases/</id>
+</repository>
+```
+
+Second, add plugin to your dependencies:
+
+```xml
+<dependency>
+    <groupId>space.moontalk.mc</groupId>
+    <artifactId>iman<artifactId>
+    <version>1.0.7</version>
+</dependency>
+```
+
+Done.
+
+## Building
 
 To build plugin you need to install [Maven](https://maven.apache.org/) first.
 Next just `cd` to plugin folder run `mvn verify`. 
