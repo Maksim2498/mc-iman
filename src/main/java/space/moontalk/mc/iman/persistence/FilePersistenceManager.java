@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -20,30 +22,29 @@ import org.jetbrains.annotations.NotNull;
 import lombok.Getter;
 import lombok.val;
 
-import space.moontalk.mc.iman.*;
+import space.moontalk.mc.iman.message.MessageProvider;
 
 @Getter
-public class FilePersistenceManager implements PersistenceManager, PluginHolder {
+public class FilePersistenceManager implements PersistenceManager {
     public static final @NotNull String EXTENSION = ".inv";
 
-    @NotNull
-    private final Iman plugin;
+    private final @NotNull MessageProvider messageProvider;
+    private final @NotNull File            databaseFile;
 
-    @NotNull
-    private final File databaseFile;
-
-    public FilePersistenceManager(Iman plugin) throws Exception {
-        this.plugin = plugin;
-
-        val config  = plugin.getConfig();
+    public FilePersistenceManager(
+        @NotNull Configuration   config, 
+        @NotNull File            dataFolder, 
+        @NotNull MessageProvider messageProvider
+    ) throws Exception {
         val dirName = config.getString("persistence.dir-name");
 
         if (dirName == null)
             throw new InvalidConfigurationException("Invalid persistence.dir-name value.");
 
-        databaseFile = new File(plugin.getDataFolder(), dirName);
-
+        databaseFile = new File(dataFolder, dirName);
         databaseFile.mkdir();
+
+        this.messageProvider = messageProvider;
     }
 
     @Override
@@ -114,9 +115,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     private void throwFailedToSave() throws Exception {
-        val messageProvider = plugin.getMessageProvider();
-        val message         = messageProvider.makeFailedToSaveInventory();
-
+        val message = messageProvider.makeFailedToSaveInventoryMessage();
         throw new Exception(message);
     }
 
@@ -176,9 +175,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     private void throwFailedToSet() throws Exception {
-        val messageProvider = plugin.getMessageProvider();
-        val message         = messageProvider.makeFailedToSetInventory();
-
+        val message = messageProvider.makeFailedToSetInventoryMessage();
         throw new Exception(message);
     }
 
@@ -197,9 +194,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     private void throwMissingInventory(@NotNull String inventoryName) throws Exception {
-        val messageProvider = plugin.getMessageProvider();
-        val message         = messageProvider.makeMissingInventory(inventoryName);
-
+        val message = messageProvider.makeMissingInventoryMessage(inventoryName);
         throw new Exception(message);
     }
 
@@ -217,9 +212,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
     }
 
     private void throwFailedToRemove() throws Exception {
-        val messageProvider = plugin.getMessageProvider();
-        val message         = messageProvider.makeFailedToRemoveInventory();
-
+        val message = messageProvider.makeFailedToRemoveInventoryMessage();
         throw new Exception(message);
     }
 
@@ -229,8 +222,8 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
         @NotNull String    inventoryName,
         @NotNull String    what
     ) {
-        val logger        = plugin.getLogger();
-        val loggerMessage = String.format(
+        val logger  = Bukkit.getLogger();
+        val message = String.format(
             "Failed to %s %s's inventory as %s: %s.",
             what,
             player.getName(),
@@ -238,7 +231,7 @@ public class FilePersistenceManager implements PersistenceManager, PluginHolder 
             exception.getMessage()
         );
 
-        logger.info(loggerMessage);
+        logger.info(message);
     }
 
     public File getPlayerInventoryFile(@NotNull Player player, @NotNull String inventoryName) {

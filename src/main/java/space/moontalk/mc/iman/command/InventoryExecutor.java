@@ -1,98 +1,60 @@
 package space.moontalk.mc.iman.command;
 
-import java.util.Arrays;
-
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-
 import org.jetbrains.annotations.NotNull;
 
 import lombok.Getter;
 import lombok.val;
 
-import space.moontalk.mc.iman.*;
+import space.moontalk.mc.commands.RootCommandExecutor;
+
 import space.moontalk.mc.iman.command.sub.*;
-import space.moontalk.ranges.IntegerRange;
+import space.moontalk.mc.iman.message.*;
+import space.moontalk.mc.iman.persistence.*;
 
-@Getter
-public class InventoryExecutor implements CommandExecutor, PluginHolder {
-    @NotNull 
-    private final Iman plugin;
+public class InventoryExecutor extends    RootCommandExecutor
+                               implements MessageProviderHolder,
+                                          PersistenceManagerHolder {
+    @Getter
+    private final @NotNull PersistenceManager persistenceManager;
+                               
+    public InventoryExecutor(
+        @NotNull MessageProvider    errorMessageProvider,
+        @NotNull PersistenceManager persistenceManager
+    ) {
+        super(errorMessageProvider); 
 
-    @NotNull
-    private final ListInventoriesExecutor listExecutor;
+        this.persistenceManager = persistenceManager;
 
-    @NotNull
-    private final SaveInventoryExecutor saveExecutor;
+        setupListExecutor();
+        setupSaveExecutor();
+        setupSetExecutor();
+        setupRemoveExecutor();
+    }
 
-    @NotNull
-    private final SetInventoryExecutor setExecutor;
+    private void setupListExecutor() {
+        val executor = new ListInventoriesExecutor(getMessageProvider(), getPersistenceManager());
 
-    @NotNull 
-    private final RemoveInventoryExecutor removeExecutor;
+        addSubcommandExecutor("list", executor);
+        addSubcommandExecutor("ls",   executor);
+    }
 
-    public InventoryExecutor(@NotNull Iman plugin) {
-        this.plugin = plugin;
+    private void setupSaveExecutor() {
+        addSubcommandExecutor("save", new SaveInventoryExecutor(getMessageProvider(), getPersistenceManager()));
+    }
 
-        listExecutor   = new ListInventoriesExecutor(plugin);
-        saveExecutor   = new SaveInventoryExecutor(plugin);
-        setExecutor    = new SetInventoryExecutor(plugin);
-        removeExecutor = new RemoveInventoryExecutor(plugin);
+    private void setupSetExecutor() {
+        addSubcommandExecutor("set", new SetInventoryExecutor(getMessageProvider(), getPersistenceManager()));
+    }
+
+    private void setupRemoveExecutor() {
+        val executor = new RemoveInventoryExecutor(getMessageProvider(), getPersistenceManager());
+
+        addSubcommandExecutor("remove", executor);
+        addSubcommandExecutor("rm",     executor);
     }
 
     @Override
-    public boolean onCommand(
-        @NotNull CommandSender sender, 
-        @NotNull Command       command, 
-        @NotNull String        label, 
-        @NotNull String[]      args
-    ) {
-        try {
-            if (args.length == 0) 
-                throwMissingSubcommand();
-
-            val subLabel       = args[0];
-            val subcommandName = subLabel.toLowerCase();
-            val subArgs        = Arrays.copyOfRange(args, 1, args.length);
-            val executor       = switch (subcommandName) {
-                case "list", "ls"   -> listExecutor;
-                case "save"         -> saveExecutor ;
-                case "set"          -> setExecutor;
-                case "remove", "rm" -> removeExecutor;
-                default             -> {
-                    throwInvalidSubcommand(subcommandName);
-                    yield null;
-                }
-            };
-
-            val argsRange = executor.getArgsRange();
-            val passed    = subArgs.length;
-             
-            if (!argsRange.contains(passed))
-                throwInvaildArgsNum(argsRange, passed);
-
-            executor.onSubcommand(sender, command, subLabel, subArgs);
-        } catch (ComponentException e) {
-            sender.sendMessage(e.getComponent());   
-        } catch (Exception e) {
-            sender.sendMessage(e.getMessage()); 
-        }
-        return true;
-    }
-
-    private void throwMissingSubcommand() throws Exception {
-        val message = getPlugin().getMessageProvider().makeMissingSubcommand();
-        throw new Exception(message);
-    }
-
-    private void throwInvalidSubcommand(@NotNull String subcommand) throws Exception {
-        val message = getPlugin().getMessageProvider().makeInvalidSubcommand(subcommand);
-        throw new Exception(message);
-    }
-
-    private void throwInvaildArgsNum(@NotNull IntegerRange argsRange, int passed) throws Exception {
-        val message = getPlugin().getMessageProvider().makeInvalidArgsNum(argsRange, passed);
-        throw new Exception(message);
+    public @NotNull MessageProvider getMessageProvider() {
+        return (MessageProvider) getErrorMessageProvider();
     }
 }

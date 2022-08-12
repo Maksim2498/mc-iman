@@ -3,9 +3,10 @@
 
 messages:
   # Errors:
-  missing-subcommand: "§cMissing subcommand."
-  invalid-subcommand: "§cInvalid subcommand (<subcommand>)."
   invalid-args-num: "§cFrom <low> to <high> subcommand arguments were expected but <passed> were passed."
+  invalid-subcommand: "§cInvalid subcommand (<subcommand>)."
+  missing-permission: "§cYou have no permission <permission>."
+  missing-subcommand: "§cMissing subcommand."
   not-a-player: "§cThis command is for players only."
   player-not-found: "§cPlayer <player> not found."
   failed-to-save-inventory: "§cFailed to save inventory due to server's internal error."

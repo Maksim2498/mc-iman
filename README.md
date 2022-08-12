@@ -74,11 +74,11 @@ Done.
 | Command                                            | Description               |
 |----------------------------------------------------|---------------------------|
 | `/inventory list [player name]`                    | list player's inventories |
-| `/inventory ls [player name]`                      | list player's inventories |
+| `/inventory ls [player name]`                      | ^                         |
 | `/inventory save <inventory name> [player name]`   | save player's inventory   |
 | `/inventory set <inventory name> [player name]`    | set player's inventory    |
 | `/inventory remove <inventory name> [player name]` | remove player's inventory |
-| `/inventory rm <inventory name> [player name]`     | remove player's inventory |
+| `/inventory rm <inventory name> [player name]`     | ^                         |
 
 *`/inv` alias is also available.*
 
@@ -132,6 +132,7 @@ For example of using placeholders see [default config](/src/main/resources/confi
 | `missing-subcommand`         | `/inv` issued without parameters                                                                    |
 | `invalid-subcommand`         | `/inv` issued with invalid first parameter                                                          |
 | `invalid-args-num`           | `/inv <subcommand>` issued with invalid number of arguments                                         |
+| `missing-permission`         | `/inv <subcommand` issued, but you have no required permission                                      |
 | `not-a-player`               | version of command only for players issued not by a player                                          |
 | `player-not-found`           | specified player was not found                                                                      |
 | `failed-to-save-inventory`   | inventory saving failed due to server's internal error                                              |

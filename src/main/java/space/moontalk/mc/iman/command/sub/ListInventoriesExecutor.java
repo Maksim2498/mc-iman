@@ -1,46 +1,40 @@
 package space.moontalk.mc.iman.command.sub;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-
 import org.jetbrains.annotations.NotNull;
 
 import lombok.val;
 
 import space.moontalk.ranges.IntegerRange;
-import space.moontalk.mc.iman.*;
 
-public class ListInventoriesExecutor extends BaseSubcommandExecutor {
-    public ListInventoriesExecutor(@NotNull Iman plugin) {
-        super(plugin);
+import space.moontalk.mc.commands.SubcommandCall;
+
+import space.moontalk.mc.iman.message.MessageProvider;
+import space.moontalk.mc.iman.persistence.PersistenceManager;
+
+public class ListInventoriesExecutor extends AbstractSubcommandExecutor {
+    public ListInventoriesExecutor(
+        @NotNull MessageProvider    messageProvider,
+        @NotNull PersistenceManager persistenceManager
+    ) {
+        super(messageProvider, persistenceManager, new IntegerRange(0, 1)); 
     }
 
     @Override
-    public @NotNull IntegerRange getArgsRange() {
-        return new IntegerRange(0, 1); 
-    }
-
-    @Override
-    public void onSubcommand(
-        @NotNull CommandSender sender, 
-        @NotNull Command       command,
-        @NotNull String        label, 
-        @NotNull String[]      args
-    ) throws Exception {
-        val player = getPlayerTarget(sender, args, 0);
+    public void onSubcommand(@NotNull SubcommandCall call) throws Exception {
+        val player = getPlayerTarget(call, 0);
+        val sender = call.getSender();
         val isSame = sender == player;
 
-        throwIfMissingPermission(sender, command, isSame ? "iman.inv.list.self" : "iman.inv.list.other");
+        throwIfMissingPermission(sender, isSame ? "iman.inv.list.self" : "iman.inv.list.other");
 
-        val plugin             = getPlugin();
-        val messageProvider    = plugin.getMessageProvider();
-        val persistenceManager = plugin.getPersistenceManager();
+        val messageProvider    = getMessageProvider();
+        val persistenceManager = getPersistenceManager();
         val list               = persistenceManager.getInvenotriesNames(player);
 
         if (list.isEmpty()) {
             val message = isSame
-                        ? messageProvider.makeMissingYourInvenotries()
-                        : messageProvider.makeMissingInventories(player.getName());
+                        ? messageProvider.makeMissingYourInvenotriesMessage()
+                        : messageProvider.makeMissingInventoriesMessage(player.getName());
             
             sender.sendMessage(message);
 
@@ -48,13 +42,12 @@ public class ListInventoriesExecutor extends BaseSubcommandExecutor {
         }
 
         val builder = new StringBuilder(
-            isSame ? messageProvider.makeYourInventories()
-                   : messageProvider.makeInventories(player.getName())
+            isSame ? messageProvider.makeYourInventoriesMessage()
+                   : messageProvider.makeInventoriesMessage(player.getName())
         );
 
-        
         for (val name : list) {
-            val item = messageProvider.makeInventory(name);
+            val item = messageProvider.makeInventoryMessage(name);
             builder.append(item);
         }
 

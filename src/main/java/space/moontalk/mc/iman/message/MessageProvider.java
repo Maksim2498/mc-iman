@@ -2,36 +2,33 @@ package space.moontalk.mc.iman.message;
 
 import org.jetbrains.annotations.NotNull;
 
-import space.moontalk.ranges.IntegerRange;
+import space.moontalk.mc.commands.ErrorMessageProvider;
 
-public interface MessageProvider {
+public interface MessageProvider extends ErrorMessageProvider {
     // Errors:
-    @NotNull String makeMissingSubcommand();
-    @NotNull String makeInvalidSubcommand(@NotNull String subcommand);
-    @NotNull String makeInvalidArgsNum(@NotNull IntegerRange argsRange, int passed);
-    @NotNull String makeNotAPlayer();
-    @NotNull String makePlayerNotFound(@NotNull String playerName); 
-    @NotNull String makeFailedToSaveInventory();
-    @NotNull String makeFailedToSetInventory();
-    @NotNull String makeFailedToRemoveInventory();
-    @NotNull String makeMissingInventory(@NotNull String inventoryName);
+    @NotNull String makeNotAPlayerMessage();
+    @NotNull String makePlayerNotFoundMessage(@NotNull String playerName); 
+    @NotNull String makeFailedToSaveInventoryMessage();
+    @NotNull String makeFailedToSetInventoryMessage();
+    @NotNull String makeFailedToRemoveInventoryMessage();
+    @NotNull String makeMissingInventoryMessage(@NotNull String inventoryName);
 
     // List:
-    @NotNull String makeMissingYourInvenotries();
-    @NotNull String makeMissingInventories(@NotNull String playerName);
-    @NotNull String makeYourInventories();
-    @NotNull String makeInventories(@NotNull String playerName);
-    @NotNull String makeInventory(@NotNull String inventoryName);
+    @NotNull String makeMissingYourInvenotriesMessage();
+    @NotNull String makeMissingInventoriesMessage(@NotNull String playerName);
+    @NotNull String makeYourInventoriesMessage();
+    @NotNull String makeInventoriesMessage(@NotNull String playerName);
+    @NotNull String makeInventoryMessage(@NotNull String inventoryName);
 
     // Save:
-    @NotNull String makeSaveYourInventory(@NotNull String inventoryName);
-    @NotNull String makeSaveInventory(@NotNull String playerName, @NotNull String inventoryName);
+    @NotNull String makeSaveYourInventoryMessage(@NotNull String inventoryName);
+    @NotNull String makeSaveInventoryMessage(@NotNull String playerName, @NotNull String inventoryName);
 
     // Set:
-    @NotNull String makeSetYourInventory(@NotNull String inventoryName);
-    @NotNull String makeSetInventory(@NotNull String playerName, @NotNull String inventoryName);
+    @NotNull String makeSetYourInventoryMessage(@NotNull String inventoryName);
+    @NotNull String makeSetInventoryMessage(@NotNull String playerName, @NotNull String inventoryName);
 
     // Remove:
-    @NotNull String makeRemoveYourInventory(@NotNull String inventoryName);
-    @NotNull String makeRemoveInventory(@NotNull String playerName, @NotNull String inventoryName);
+    @NotNull String makeRemoveYourInventoryMessage(@NotNull String inventoryName);
+    @NotNull String makeRemoveInventoryMessage(@NotNull String playerName, @NotNull String inventoryName);
 }

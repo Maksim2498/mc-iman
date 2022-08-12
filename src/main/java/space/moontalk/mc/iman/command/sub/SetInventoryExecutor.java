@@ -1,47 +1,41 @@
 package space.moontalk.mc.iman.command.sub;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-
 import org.jetbrains.annotations.NotNull;
 
 import lombok.val;
 
 import space.moontalk.ranges.IntegerRange;
-import space.moontalk.mc.iman.*;
 
-public class SetInventoryExecutor extends BaseSubcommandExecutor {
-    public SetInventoryExecutor(@NotNull Iman plugin) {
-        super(plugin);
+import space.moontalk.mc.commands.SubcommandCall;
+
+import space.moontalk.mc.iman.message.MessageProvider;
+import space.moontalk.mc.iman.persistence.PersistenceManager;
+
+public class SetInventoryExecutor extends AbstractSubcommandExecutor {
+    public SetInventoryExecutor(
+        @NotNull MessageProvider    messageProvider,
+        @NotNull PersistenceManager persistenceManager
+    ) {
+        super(messageProvider, persistenceManager, new IntegerRange(1, 2)); 
     }
 
     @Override
-    public @NotNull IntegerRange getArgsRange() {
-        return new IntegerRange(1, 2);
-    }
-
-    @Override
-    public void onSubcommand(
-        @NotNull CommandSender sender, 
-        @NotNull Command       command,
-        @NotNull String        label, 
-        @NotNull String[]      args
-    ) throws Exception {
-        val player = getPlayerTarget(sender, args, 1);
+    public void onSubcommand(@NotNull SubcommandCall call) throws Exception {
+        val player = getPlayerTarget(call, 1);
+        val sender = call.getSender();
         val isSame = sender == player;
 
-        throwIfMissingPermission(sender, command, isSame ? "iman.inv.set.self" : "iman.inv.set.other");
+        throwIfMissingPermission(sender, isSame ? "iman.inv.set.self" : "iman.inv.set.other");
 
-        val plugin             = getPlugin();
-        val persistenceManager = plugin.getPersistenceManager();
-        val inventoryName      = args[0]; 
+        val persistenceManager = getPersistenceManager();
+        val inventoryName      = call.getSubargs()[0]; 
 
         persistenceManager.setInventory(player, inventoryName);
 
-        val messageProvider = plugin.getMessageProvider();
+        val messageProvider = getMessageProvider();
         val message         = isSame
-                            ? messageProvider.makeSetYourInventory(inventoryName)
-                            : messageProvider.makeSetInventory(player.getName(), inventoryName);
+                            ? messageProvider.makeSetYourInventoryMessage(inventoryName)
+                            : messageProvider.makeSetInventoryMessage(player.getName(), inventoryName);
 
         sender.sendMessage(message);
     }

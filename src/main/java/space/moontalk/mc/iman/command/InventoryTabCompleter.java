@@ -61,7 +61,10 @@ public class InventoryTabCompleter implements TabCompleter {
         return Bukkit.getOnlinePlayers().stream().map(p -> p.getName()).collect(Collectors.toList());
     }
 
-    private static @NotNull List<@NotNull String> removeNotStartingWith(@NotNull List<String> strings, @NotNull String prefix) {
+    private static @NotNull List<@NotNull String> removeNotStartingWith(
+        @NotNull List<String> strings,
+        @NotNull String prefix
+    ) {
         val lowerPrefix = prefix.toLowerCase();
         strings.removeIf(s -> !s.toLowerCase().startsWith(lowerPrefix));
         return strings;
