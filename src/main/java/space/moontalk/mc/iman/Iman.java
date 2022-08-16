@@ -11,6 +11,8 @@ import org.jetbrains.annotations.Nullable;
 import lombok.Getter;
 import lombok.val;
 
+import space.moontalk.mc.commands.completion.InvalidPatternException;
+
 import space.moontalk.mc.iman.command.*;
 import space.moontalk.mc.iman.message.*;
 import space.moontalk.mc.iman.persistence.*;
@@ -52,7 +54,7 @@ public final class Iman extends    JavaPlugin
         };
     }
 
-    private void setupCommand() {
+    private void setupCommand() throws InvalidPatternException {
         val command   = Objects.requireNonNull(getCommand("inventory"));
         val executor  = new InventoryExecutor(messageProvider, persistenceManager);
         val completer = new InventoryTabCompleter();
