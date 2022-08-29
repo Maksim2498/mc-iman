@@ -87,6 +87,7 @@ public class FilePersistenceManager implements PersistenceManager {
 
     private void writePlayerStats(@NotNull BukkitObjectOutputStream stream, @NotNull Player player) throws Exception {
         stream.writeDouble(player.getHealth());
+        stream.writeInt(player.getFoodLevel());
         stream.writeFloat(player.getExp());
         stream.writeInt(player.getLevel());
     }
@@ -147,6 +148,7 @@ public class FilePersistenceManager implements PersistenceManager {
 
     private void readPlayerStats(@NotNull BukkitObjectInputStream stream, @NotNull Player player) throws Exception {
         player.setHealth(stream.readDouble());
+        player.setFoodLevel(stream.readInt());
         player.setExp(stream.readFloat());
         player.setLevel(stream.readInt());
     }

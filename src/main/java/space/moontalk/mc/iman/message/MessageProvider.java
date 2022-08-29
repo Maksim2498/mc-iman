@@ -2,12 +2,8 @@ package space.moontalk.mc.iman.message;
 
 import org.jetbrains.annotations.NotNull;
 
-import space.moontalk.mc.commands.ErrorMessageProvider;
-
-public interface MessageProvider extends ErrorMessageProvider {
+public interface MessageProvider {
     // Errors:
-    @NotNull String makeNotAPlayerMessage();
-    @NotNull String makePlayerNotFoundMessage(@NotNull String playerName); 
     @NotNull String makeFailedToSaveInventoryMessage();
     @NotNull String makeFailedToSetInventoryMessage();
     @NotNull String makeFailedToRemoveInventoryMessage();

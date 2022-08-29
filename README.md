@@ -57,7 +57,7 @@ Second, add plugin to your dependencies:
 <dependency>
     <groupId>space.moontalk.mc</groupId>
     <artifactId>iman<artifactId>
-    <version>1.0.10</version>
+    <version>1.0.11</version>
 </dependency>
 ```
 
@@ -129,12 +129,6 @@ For example of using placeholders see [default config](/src/main/resources/confi
 
 | Message                      | Shown when                                                                                          |
 |------------------------------|-----------------------------------------------------------------------------------------------------|
-| `missing-subcommand`         | `/inv` issued without parameters                                                                    |
-| `invalid-subcommand`         | `/inv` issued with invalid first parameter                                                          |
-| `invalid-args-num`           | `/inv <subcommand>` issued with invalid number of arguments                                         |
-| `missing-permission`         | `/inv <subcommand` issued, but you have no required permission                                      |
-| `not-a-player`               | version of command only for players issued not by a player                                          |
-| `player-not-found`           | specified player was not found                                                                      |
 | `failed-to-save-inventory`   | inventory saving failed due to server's internal error                                              |
 | `failed-to-set-inventory`    | inventory reading failed due to server's internal error                                             |
 | `failed-to-remove-inventory` | inventory removing failed due to server's internal error                                            |
