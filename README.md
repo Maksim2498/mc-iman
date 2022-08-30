@@ -57,7 +57,7 @@ Second, add plugin to your dependencies:
 <dependency>
     <groupId>space.moontalk.mc</groupId>
     <artifactId>iman<artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 

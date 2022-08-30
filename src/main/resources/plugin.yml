@@ -10,6 +10,7 @@ commands:
   inventory:
     aliases: [inv]
     description: Manages inventories
+    permission: iman.inv
     permission-message: "§cYou don't have permission to run this command."
     usage: |
       
