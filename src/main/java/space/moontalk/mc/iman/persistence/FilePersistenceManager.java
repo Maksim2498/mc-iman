@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
@@ -241,10 +242,24 @@ public class FilePersistenceManager implements PersistenceManager {
     }
 
     public File getPlayerFile(@NotNull Player player) {
-        val file = new File(databaseFile, player.getUniqueId().toString());
+        val cuuid = getPlayerCUUID(player);
+        val file  = new File(databaseFile, cuuid.toString());
     
         file.mkdir();
 
         return file;
+    }
+
+    public UUID getPlayerCUUID(@NotNull Player player) {
+        val metas = player.getMetadata("cname");
+
+        if (metas.isEmpty())
+            return player.getUniqueId();
+
+        val first   = metas.stream().findFirst().get();
+        val cname   = first.asString();
+        val cplayer = Bukkit.getOfflinePlayer(cname);
+
+        return cplayer == null ? player.getUniqueId() : cplayer.getUniqueId();
     }
 }
